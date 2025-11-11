@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ohjeua6j723"]
+
+[ext_resource type="Texture2D" uid="uid://l5ldfckswvsi" path="res://Asset/fondmorpion.png" id="1_f6udf"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Fondmorpion" type="Sprite2D" parent="."]
+position = Vector2(540, 315)
+scale = Vector2(4.4960938, 4.4960938)
+texture = ExtResource("1_f6udf")
