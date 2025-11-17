@@ -39,7 +39,7 @@ func _ready():
 		case_node.mouse_entered.connect(_on_case_mouse_entered.bind(i))
 		case_node.mouse_exited.connect(_on_case_mouse_exited.bind(i))
 
-func _on_case_clicked(viewport, event, shape_idx, case_number):
+func _on_case_clicked(_viewport, event, _shape_idx, case_number):
 	# Vérifier si c'est un clic gauche, si la case est vide et si cette grille est jouable
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if grid_state[case_number] == null and is_playable and not is_won:
