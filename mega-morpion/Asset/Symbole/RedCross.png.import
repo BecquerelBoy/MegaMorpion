@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l5ldfckswvsi"
-path="res://.godot/imported/fondmorpion.png-5faa1329632f0d65e55e43a03670dd16.ctex"
+uid="uid://b7wx0qcrgiexj"
+path="res://.godot/imported/RedCross.png-99518f9c45d91e50e13bdc54632d7fbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/fondmorpion.png"
-dest_files=["res://.godot/imported/fondmorpion.png-5faa1329632f0d65e55e43a03670dd16.ctex"]
+source_file="res://Asset/Symbole/RedCross.png"
+dest_files=["res://.godot/imported/RedCross.png-99518f9c45d91e50e13bdc54632d7fbb.ctex"]
 
 [params]
 

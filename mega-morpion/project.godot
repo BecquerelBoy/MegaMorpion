@@ -11,9 +11,24 @@ config_version=5
 [application]
 
 config/name="MegaMorpion"
-run/main_scene="uid://c3ohjeua6j723"
+run/main_scene="uid://dyjx3iwwvrndi"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://Asset/icon.svg"
+config/icon="res://Asset/vrac/icon.svg"
+
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://Asset/": "teal",
+"res://Scene/": "orange",
+"res://Script/": "gray",
+"res://Shader/": "yellow"
+}
 
 [rendering]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brnb81hbyrojh"
-path="res://.godot/imported/icon.svg-0a5d4dc0e3a3bb97758b18a2fe883bc4.ctex"
+uid="uid://8oawt07msgup"
+path="res://.godot/imported/BlueCircle.png-70fd05114c01e6f48f6b8f17ca6ddb56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-0a5d4dc0e3a3bb97758b18a2fe883bc4.ctex"]
+source_file="res://Asset/Symbole/BlueCircle.png"
+dest_files=["res://.godot/imported/BlueCircle.png-70fd05114c01e6f48f6b8f17ca6ddb56.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
