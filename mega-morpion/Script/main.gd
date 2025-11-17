@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var you: AnimatedSprite2D = $Characters/You
+@onready var dragon: AnimatedSprite2D = $Characters/dragon
+
 # Références aux grandes cases
 var grandes_cases = []
 
@@ -10,6 +13,9 @@ var next_grande_case = null  # null = jouer n'importe où, sinon numéro de la c
 var game_over = false
 
 func _ready():
+	you.play("default")
+	dragon.play("default")
+	
 	# Récupérer toutes les grandes cases
 	for i in range(1, 10):
 		var grande_case = get_node("GrandeGrille/GrandeCase" + str(i))
