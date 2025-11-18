@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyjx3iwwvrndi"]
+[gd_scene load_steps=10 format=3 uid="uid://dyjx3iwwvrndi"]
 
 [ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_sblpm"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_r34rm"]
@@ -34,6 +34,11 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xcnr"]
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_sblpm")
@@ -90,3 +95,11 @@ position = Vector2(402.99997, -9)
 scale = Vector2(2.296875, 2.296875)
 sprite_frames = SubResource("SpriteFrames_7y4ci")
 frame_progress = 0.19913895
+
+[node name="WinLabel" type="Label" parent="."]
+offset_left = -168.0
+offset_top = -23.0
+offset_right = 169.0
+offset_bottom = 19.0
+text = "VICTOIRE DE LA CROIX !"
+label_settings = SubResource("LabelSettings_1xcnr")

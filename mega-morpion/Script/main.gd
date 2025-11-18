@@ -1,8 +1,5 @@
 extends Node2D
 
-@onready var you: AnimatedSprite2D = $Characters/You
-@onready var dragon: AnimatedSprite2D = $Characters/dragon
-
 # Références aux grandes cases
 var grandes_cases = []
 
@@ -12,10 +9,16 @@ var grande_case_states = {}  # Stocke l'état de chaque grande case (null, "cros
 var next_grande_case = null  # null = jouer n'importe où, sinon numéro de la case
 var game_over = false
 
+# Référence au label de victoire
+@onready var win_label = $WinLabel
+@onready var you: AnimatedSprite2D = $Characters/You
+@onready var dragon: AnimatedSprite2D = $Characters/dragon
+
 func _ready():
+	# Cacher le label de victoire au début
+	win_label.visible = false
 	you.play("default")
 	dragon.play("default")
-	
 	# Récupérer toutes les grandes cases
 	for i in range(1, 10):
 		var grande_case = get_node("GrandeGrille/GrandeCase" + str(i))
@@ -30,7 +33,7 @@ func _ready():
 	# Initialiser : le premier joueur peut jouer n'importe où
 	update_playable_cases()
 
-func _on_case_jouee(_grande_case_num, petite_case_num):
+func _on_case_jouee(grande_case_num, petite_case_num):
 	if game_over:
 		return
 	
@@ -102,8 +105,16 @@ func check_super_morpion():
 
 func announce_super_winner(winner):
 	game_over = true
-	print("SUPER MORPION ! Le joueur ", winner, " a gagné la partie !")
 	update_playable_cases()
+	
+	# Afficher le label de victoire avec le nom du gagnant
+	win_label.visible = true
+	if winner == "cross":
+		win_label.text = "VICTOIRE DE LA CROIX !"
+	else:
+		win_label.text = "VICTOIRE DU ROND !"
+	
+	print("SUPER MORPION ! Le joueur ", winner, " a gagné la partie !")
 
 func count_winner():
 	game_over = true
@@ -116,11 +127,16 @@ func count_winner():
 		elif grande_case_states[i] == "circle":
 			circle_count += 1
 	
+	# Afficher le label de victoire avec le résultat
+	win_label.visible = true
 	if cross_count > circle_count:
+		win_label.text = "VICTOIRE DE LA CROIX !\n" + str(cross_count) + " plaquettes contre " + str(circle_count)
 		print("Victoire de la croix avec ", cross_count, " plaquettes contre ", circle_count)
 	elif circle_count > cross_count:
+		win_label.text = "VICTOIRE DU ROND !\n" + str(circle_count) + " plaquettes contre " + str(cross_count)
 		print("Victoire du rond avec ", circle_count, " plaquettes contre ", cross_count)
 	else:
+		win_label.text = "MATCH NUL !\n" + str(cross_count) + " plaquettes chacun"
 		print("Match nul ! ", cross_count, " plaquettes chacun")
 	
 	update_playable_cases()
@@ -129,6 +145,9 @@ func reset_game():
 	game_over = false
 	current_player = "cross"
 	next_grande_case = null
+	
+	# Cacher le label de victoire
+	win_label.visible = false
 	
 	for i in range(1, 10):
 		grande_case_states[i] = null
