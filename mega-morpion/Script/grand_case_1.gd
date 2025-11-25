@@ -8,6 +8,8 @@ signal case_jouee(grande_case_num, petite_case_num)
 # Référence aux sprites
 @onready var blue_circle = $Assets/BlueCircle
 @onready var red_cross = $Assets/RedCross
+@onready var cadre_anim = $Assets/CadreAnim
+@onready var grille_anim: AnimatedSprite2D = $Assets/GrilleAnim
 
 # Variables de jeu
 var grid_state = {}  # Stocke l'état de chaque petite case
@@ -18,7 +20,6 @@ var is_won = false  # Indique si cette grille est déjà gagnée
 var grande_case_number = 0  # Numéro de cette grande case (1-9)
 var preview_symbol = null  # Symbole de prévisualisation
 var current_hovered_case = null  # Case actuellement survolée
-var winner_scale = 7 # Scale de la case gagné
 
 func _ready():
 	# Déterminer le numéro de cette grande case
@@ -35,10 +36,17 @@ func _ready():
 		shapes.append(case_node)
 		grid_state[i] = null
 		
+		# S'assurer que l'Area2D peut recevoir les événements de souris
+		case_node.input_pickable = true
+		case_node.monitoring = true
+		case_node.monitorable = true
+		
 		# Connecter les signaux de chaque Area2D
 		case_node.input_event.connect(_on_case_clicked.bind(i))
 		case_node.mouse_entered.connect(_on_case_mouse_entered.bind(i))
 		case_node.mouse_exited.connect(_on_case_mouse_exited.bind(i))
+	
+	print("GrandeCase", grande_case_number, " initialisée avec ", shapes.size(), " petites cases")
 
 func _on_case_clicked(_viewport, event, _shape_idx, case_number):
 	# Vérifier si c'est un clic gauche, si la case est vide et si cette grille est jouable
@@ -47,16 +55,45 @@ func _on_case_clicked(_viewport, event, _shape_idx, case_number):
 			place_symbol(case_number)
 
 func _on_case_mouse_entered(case_number):
+	# → Lancer l'animation de la grande case où l'adversaire devra jouer
+	var main_scene = get_tree().get_root().get_node("Main")
+	var grande_grille = main_scene.get_node("GrandeGrille")
+
+	# Récupérer la prochaine grande case
+	var target_case = grande_grille.get_node("GrandeCase" + str(case_number))
+
+	print("Souris entrée dans case ", case_number, " de GrandeCase", grande_case_number)
 	# Afficher l'aperçu seulement si la case est vide et jouable
 	if grid_state[case_number] == null and is_playable and not is_won:
 		current_hovered_case = case_number
 		show_preview(case_number)
+		# Afficher dans quelle grande case l'adversaire devra jouer
+		print(">>> Si vous jouez ici, l'adversaire devra jouer dans la GrandeCase", case_number)
+	else:
+		print("Case non jouable : vide=", grid_state[case_number] == null, " playable=", is_playable, " won=", is_won)
+		
+	# Lancer l'animation seulement si la grande case n'est pas déjà gagnée
+	if not target_case.is_won:
+		target_case.cadre_anim.play("default")
+		target_case.grille_anim.play("default")
+
 
 func _on_case_mouse_exited(case_number):
+	# → Arrêter l’animation de la grande case cible quand on quitte la case
+	var main_scene = get_tree().get_root().get_node("Main")
+	var grande_grille = main_scene.get_node("GrandeGrille")
+	var target_case = grande_grille.get_node("GrandeCase" + str(case_number))
+	
+	print("Souris sortie de case ", case_number)
 	# Cacher l'aperçu quand on sort de la case
 	if current_hovered_case == case_number:
 		current_hovered_case = null
 		hide_preview()
+	
+	if not target_case.is_won and not target_case.is_playable:
+		target_case.cadre_anim.stop()
+		target_case.grille_anim.stop()
+
 
 func show_preview(case_number):
 	# Supprimer l'ancien aperçu s'il existe
@@ -166,7 +203,7 @@ func show_victory_symbol(winner):
 		victory_symbol = blue_circle.duplicate()
 	
 	# Agrandir le symbole
-	victory_symbol.scale = Vector2(winner_scale, winner_scale)
+	victory_symbol.scale = Vector2(3, 3)
 	victory_symbol.visible = true
 	victory_symbol.position = Vector2.ZERO
 	
@@ -181,6 +218,15 @@ func set_playable(playable: bool, player: String):
 	if not playable:
 		hide_preview()
 	
+	# Gérer l'animation du cadre
+	if playable and not is_won:
+		cadre_anim.visible = true
+		cadre_anim.play("default")
+		grille_anim.play("default")
+	else:
+		cadre_anim.stop()
+		grille_anim.stop()
+	
 	# Optionnel : changer la couleur/opacité pour indiquer les cases jouables
 	if not is_won:
 		modulate = Color(1, 1, 1, 1) if playable else Color(0.5, 0.5, 0.5, 0.7)
@@ -191,6 +237,8 @@ func reset_grid():
 	modulate = Color(1, 1, 1, 1)
 	hide_preview()
 	current_hovered_case = null
+	cadre_anim.stop()
+	cadre_anim.visible = false
 	
 	for i in range(1, 10):
 		grid_state[i] = null

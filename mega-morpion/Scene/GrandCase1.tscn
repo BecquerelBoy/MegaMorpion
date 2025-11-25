@@ -1,10 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3ohjeua6j723"]
+[gd_scene load_steps=17 format=3 uid="uid://c3ohjeua6j723"]
 
 [ext_resource type="Texture2D" uid="uid://l5ldfckswvsi" path="res://Asset/Grille/fondmorpion.png" id="1_342a2"]
 [ext_resource type="Script" uid="uid://c7dplavovshnn" path="res://Script/grand_case_1.gd" id="1_u3d78"]
 [ext_resource type="Texture2D" uid="uid://dqr26a57b1ydh" path="res://Asset/Grille/untitled.png" id="2_u3d78"]
 [ext_resource type="Texture2D" uid="uid://8oawt07msgup" path="res://Asset/Symbole/BlueCircle.png" id="3_q6yvs"]
 [ext_resource type="Texture2D" uid="uid://b7wx0qcrgiexj" path="res://Asset/Symbole/RedCross.png" id="4_shmjr"]
+[ext_resource type="Texture2D" uid="uid://dfkx1psa47xx1" path="res://Asset/Anim/Grille/untitled_0002.png" id="6_wmann"]
+[ext_resource type="Texture2D" uid="uid://c2ielm2gm4i7v" path="res://Asset/Anim/Grille/untitled_0003.png" id="7_q3yyn"]
+[ext_resource type="Texture2D" uid="uid://bvwiyvx5yavg4" path="res://Asset/Anim/Grille/untitled_0004.png" id="8_qqkls"]
+[ext_resource type="Texture2D" uid="uid://be5p10b70vaki" path="res://Asset/Anim/Grille/untitled_0005.png" id="9_1os11"]
+[ext_resource type="Texture2D" uid="uid://dw0wgka2jspde" path="res://Asset/Anim/Cadre/untitled_0001.png" id="10_xpdwx"]
+[ext_resource type="Texture2D" uid="uid://bofkdiniudkbn" path="res://Asset/Anim/Cadre/untitled_0002.png" id="11_fqhxg"]
+[ext_resource type="Texture2D" uid="uid://v002dq0rbivk" path="res://Asset/Anim/Cadre/untitled_0003.png" id="12_ttvil"]
+[ext_resource type="Texture2D" uid="uid://cfmqdlx38mg5b" path="res://Asset/Anim/Cadre/untitled_0004.png" id="13_uqfdm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdpxd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wmann")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_q3yyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qqkls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1os11")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2cuw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_xpdwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fqhxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ttvil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uqfdm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r34rm"]
 size = Vector2(143, 144)
@@ -19,6 +67,7 @@ scale = Vector2(4.5, 4.5)
 texture = ExtResource("1_342a2")
 
 [node name="Ligne" type="Sprite2D" parent="Assets"]
+visible = false
 scale = Vector2(30, 30)
 texture = ExtResource("2_u3d78")
 
@@ -33,6 +82,18 @@ visible = false
 position = Vector2(123.91171, 124.9117)
 scale = Vector2(1.8722407, 1.8722407)
 texture = ExtResource("4_shmjr")
+
+[node name="GrilleAnim" type="AnimatedSprite2D" parent="Assets"]
+position = Vector2(3.695488e-06, -1.1444088e-05)
+scale = Vector2(4.4999995, 4.5)
+sprite_frames = SubResource("SpriteFrames_xdpxd")
+frame_progress = 0.59029156
+
+[node name="CadreAnim" type="AnimatedSprite2D" parent="Assets"]
+position = Vector2(-0.9999995, 2)
+scale = Vector2(4.5285716, 4.45)
+sprite_frames = SubResource("SpriteFrames_u2cuw")
+frame_progress = 0.15703833
 
 [node name="ShapeCase" type="Node2D" parent="."]
 
