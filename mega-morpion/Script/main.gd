@@ -33,6 +33,10 @@ func _ready():
 	# Initialiser : le premier joueur peut jouer n'importe où
 	update_playable_cases()
 
+func _process(_delta):
+	GridEvaluator.update_all_scores(self)
+
+
 func _on_case_jouee(_grande_case_num, petite_case_num):
 	if game_over:
 		return

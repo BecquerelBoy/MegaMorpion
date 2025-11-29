@@ -121,6 +121,9 @@ func hide_preview():
 		preview_symbol = null
 
 func place_symbol(case_number):
+	
+	GameState.register_symbol(grande_case_number, case_number, current_player)
+
 	# Cacher l'aperçu avant de placer le symbole définitif
 	hide_preview()
 	
@@ -176,10 +179,14 @@ func check_winner():
 		draw_grid()
 
 func win_grid(winner):
+	GameState.set_big_grid_winner(grande_case_number, winner)
+
 	is_won = true
 	emit_signal("petite_grille_gagnee", grande_case_number, winner)
 
 func draw_grid():
+	GameState.set_big_grid_draw(grande_case_number)
+
 	is_won = true
 	emit_signal("petite_grille_nulle", grande_case_number)
 
@@ -211,6 +218,8 @@ func show_victory_symbol(winner):
 	center_cshape.add_child(victory_symbol)
 
 func set_playable(playable: bool, player: String):
+	GameState.update_playable(grande_case_number, playable)
+
 	is_playable = playable
 	current_player = player
 	
@@ -230,6 +239,7 @@ func set_playable(playable: bool, player: String):
 	# Optionnel : changer la couleur/opacité pour indiquer les cases jouables
 	if not is_won:
 		modulate = Color(1, 1, 1, 1) if playable else Color(0.5, 0.5, 0.5, 0.7)
+
 
 func reset_grid():
 	is_won = false

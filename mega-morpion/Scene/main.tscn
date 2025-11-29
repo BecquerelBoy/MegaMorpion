@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyjx3iwwvrndi"]
+[gd_scene load_steps=11 format=3 uid="uid://dyjx3iwwvrndi"]
 
 [ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_sblpm"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_r34rm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_ow1sv"]
 [ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_75buv"]
 [ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/dragon_anim_0002.png" id="6_c2iwn"]
+[ext_resource type="Theme" uid="uid://dc8tj1ey2ejau" path="res://Ressource/ui_test_ia.tres" id="7_ow1sv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3pt4j"]
 animations = [{
@@ -85,14 +86,16 @@ scale = Vector2(0.29427317, 0.29427317)
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="You" type="AnimatedSprite2D" parent="Characters"]
+visible = false
 position = Vector2(-385.00003, 1)
 scale = Vector2(2.296875, 2.296875)
 sprite_frames = SubResource("SpriteFrames_3pt4j")
 frame_progress = 0.07075794
 
 [node name="dragon" type="AnimatedSprite2D" parent="Characters"]
-position = Vector2(402.99997, -9)
-scale = Vector2(2.296875, 2.296875)
+visible = false
+position = Vector2(466, -74.999985)
+scale = Vector2(1.4609375, 1.4609375)
 sprite_frames = SubResource("SpriteFrames_7y4ci")
 frame_progress = 0.19913895
 
@@ -103,3 +106,145 @@ offset_right = 169.0
 offset_bottom = 19.0
 text = "VICTOIRE DE LA CROIX !"
 label_settings = SubResource("LabelSettings_1xcnr")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Node2D" parent="."]
+
+[node name="GrandeCase1Score" type="Label" parent="ScoreLabel"]
+offset_left = -320.0
+offset_top = -300.0
+offset_right = -280.0
+offset_bottom = -277.0
+text = "1"
+
+[node name="GrandeCase2Score" type="Label" parent="ScoreLabel"]
+offset_left = -13.0
+offset_top = -300.0
+offset_right = 27.0
+offset_bottom = -277.0
+text = "2"
+
+[node name="GrandeCase3Score" type="Label" parent="ScoreLabel"]
+offset_left = 287.0
+offset_top = -300.0
+offset_right = 327.0
+offset_bottom = -277.0
+text = "3"
+
+[node name="GrandeCase4Score" type="Label" parent="ScoreLabel"]
+offset_left = -389.0
+offset_top = -23.0
+offset_right = -349.0
+text = "4"
+
+[node name="GrandeCase5Score" type="Label" parent="ScoreLabel"]
+offset_left = -389.0
+offset_top = 54.0
+offset_right = -361.0
+offset_bottom = 77.0
+text = "5"
+
+[node name="GrandeCase6Score" type="Label" parent="ScoreLabel"]
+offset_left = 287.0
+offset_top = -23.0
+offset_right = 327.0
+text = "6"
+
+[node name="GrandeCase7Score" type="Label" parent="ScoreLabel"]
+offset_left = -320.0
+offset_top = 273.0
+offset_right = -280.0
+offset_bottom = 296.0
+text = "7"
+
+[node name="GrandeCase8Score" type="Label" parent="ScoreLabel"]
+offset_left = -13.0
+offset_top = 273.0
+offset_right = 27.0
+offset_bottom = 296.0
+text = "8"
+
+[node name="GrandeCase9Score" type="Label" parent="ScoreLabel"]
+offset_left = 287.0
+offset_top = 273.0
+offset_right = 327.0
+offset_bottom = 296.0
+text = "9"
+
+[node name="ScoreBar" type="Node2D" parent="."]
+
+[node name="GrandeCase1Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = -276.0
+offset_top = -293.0
+offset_right = -199.0
+offset_bottom = -281.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase2Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = 19.0
+offset_top = -293.0
+offset_right = 96.0
+offset_bottom = -281.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase3Bar" type="ProgressBar" parent="ScoreBar"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 317.0
+offset_top = -293.0
+offset_right = 394.0
+offset_bottom = -281.0
+grow_horizontal = 0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase4Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = -358.0
+offset_top = -15.0
+offset_right = -281.0
+offset_bottom = -3.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase5Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = -358.0
+offset_top = 54.0
+offset_right = -281.0
+offset_bottom = 66.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase6Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = 307.0
+offset_top = -15.0
+offset_right = 384.0
+offset_bottom = -3.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase7Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = -281.0
+offset_top = 285.0
+offset_right = -204.0
+offset_bottom = 297.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase8Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = 27.0
+offset_top = 285.0
+offset_right = 104.0
+offset_bottom = 297.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false
+
+[node name="GrandeCase9Bar" type="ProgressBar" parent="ScoreBar"]
+offset_left = 317.0
+offset_top = 285.0
+offset_right = 394.0
+offset_bottom = 297.0
+theme = ExtResource("7_ow1sv")
+show_percentage = false

@@ -15,8 +15,16 @@ run/main_scene="uid://dyjx3iwwvrndi"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Asset/vrac/icon.svg"
 
+[autoload]
+
+GameState="*res://Script/GameState.gd"
+GridEvaluator="*res://Script/GridEvaluator.gd"
+MusicManager="*res://Script/MusicManager.gd"
+TransitionScreen="*res://Scene/Transition_Screen.tscn"
+
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -24,6 +32,7 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://Asset/": "teal",
+"res://Ressource/": "pink",
 "res://Scene/": "orange",
 "res://Script/": "blue",
 "res://Shader/": "yellow"
