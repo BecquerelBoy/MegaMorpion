@@ -31,10 +31,12 @@ func _ready():
 
 func _on_mouse_entered():
 	is_hovered = true
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	animate_with_curve(hover_scale_curve, hover_max_scale, hover_duration)
 
 func _on_mouse_exited():
 	is_hovered = false
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
 	animate_to_original_size()
 
 func _on_button_down():

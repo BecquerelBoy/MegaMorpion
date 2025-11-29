@@ -13,6 +13,12 @@ var game_over = false
 @onready var win_label = $WinLabel
 @onready var you: AnimatedSprite2D = $Characters/You
 @onready var dragon: AnimatedSprite2D = $Characters/dragon
+@onready var button_play_anim: AnimatedSprite2D = $PauseButton/ButtonPlayAnim
+
+var pause_instance = null
+const PAUSE_MENU = preload("uid://dlckbqy80trbh")
+@onready var pause_menu = preload("res://Scene/pause_menu.tscn")
+
 
 func _ready():
 	# Cacher le label de victoire au début
@@ -394,3 +400,15 @@ func check_simulated_win(big_idx: int, player: String) -> bool:
 func _input(event):
 	if event.is_action_pressed("ui_accept"):  # Touche Entrée
 		reset_game()
+
+
+func _on_pause_button_mouse_entered() -> void:
+	button_play_anim.play("Play")
+
+func _on_pause_button_pressed() -> void:
+	if pause_instance == null:
+		print("Jeu en pause")
+		get_tree().paused = true
+		pause_instance = pause_menu.instantiate()
+		pause_instance.z_index = 100
+		add_child(pause_instance)
