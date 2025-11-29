@@ -20,6 +20,7 @@ var is_won = false  # Indique si cette grille est déjà gagnée
 var grande_case_number = 0  # Numéro de cette grande case (1-9)
 var preview_symbol = null  # Symbole de prévisualisation
 var current_hovered_case = null  # Case actuellement survolée
+var symbol_won_scale = 5 # taille du symbole d'une case gagné
 
 func _ready():
 	# Déterminer le numéro de cette grande case
@@ -244,7 +245,7 @@ func show_victory_symbol(winner):
 		victory_symbol = blue_circle.duplicate()
 	
 	# Agrandir le symbole
-	victory_symbol.scale = Vector2(3, 3)
+	victory_symbol.scale = Vector2(symbol_won_scale, symbol_won_scale)
 	victory_symbol.visible = true
 	victory_symbol.position = Vector2.ZERO
 	

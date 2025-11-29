@@ -17,8 +17,15 @@ var game_over = false
 func _ready():
 	# Cacher le label de victoire au début
 	win_label.visible = false
+	
+	# Démarrer les animations par défaut
 	you.play("default")
 	dragon.play("default")
+	
+	# Connecter les signaux de fin d'animation
+	you.animation_finished.connect(_on_you_animation_finished)
+	dragon.animation_finished.connect(_on_dragon_animation_finished)
+	
 	# Récupérer toutes les grandes cases
 	for i in range(1, 10):
 		var grande_case = get_node("GrandeGrille/GrandeCase" + str(i))
@@ -36,7 +43,20 @@ func _ready():
 func _process(_delta):
 	GridEvaluator.update_all_scores(self)
 
-func _on_case_jouee(_grande_case_num, petite_case_num):
+func _on_you_animation_finished():
+	# Revenir à l'animation par défaut après l'attaque
+	if you.animation == "atk":
+		you.play("default")
+
+func _on_dragon_animation_finished():
+	# Revenir à l'animation par défaut après l'attaque
+	if dragon.animation == "atk":
+		dragon.play("default")
+
+func _on_case_jouee(grande_case_num, petite_case_num):
+	# Jouer l'animation d'attaque du joueur
+	you.play("atk")
+	
 	if game_over:
 		return
 	
@@ -159,6 +179,10 @@ func reset_game():
 	# Cacher le label de victoire
 	win_label.visible = false
 	
+	# Réinitialiser les animations
+	you.play("default")
+	dragon.play("default")
+	
 	for i in range(1, 10):
 		grande_case_states[i] = null
 		grandes_cases[i - 1].reset_grid()
@@ -197,7 +221,12 @@ func ia_play():
 	# Jouer le meilleur coup trouvé (si un existe)
 	if best_grande != null and best_petite != null:
 		var chosen_case = grandes_cases[best_grande - 1]
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.5).timeout
+		
+		# Jouer l'animation d'attaque du dragon
+		dragon.play("atk")
+		
+		await get_tree().create_timer(0.5).timeout
 		
 		# Placer le symbole SANS passer par le signal
 		chosen_case.place_symbol_forced(best_petite, "circle")
@@ -241,7 +270,7 @@ func evaluate_move_with_depth(ia_big: int, ia_small: int) -> float:
 		base_score += 10.0  # Gagner une grande case est excellent
 	
 	# 2. Évaluer si ce coup bloque une victoire adverse
-	var _sim_cross = GameState.big_grid_state[ia_big]["cross"]
+	var sim_cross = GameState.big_grid_state[ia_big]["cross"]
 	if check_would_win(ia_big, ia_small, "cross"):
 		base_score += 5.0  # Bloquer une victoire est important
 	

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://ce6vqrsnyaw7f" path="res://Script/game_mode_2.gd" id="1_mex7t"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_sur0u"]
 [ext_resource type="Script" uid="uid://ddpgif4thg860" path="res://Script/grand_case_GM2.gd" id="3_sur0u"]
-[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/You_anim_0001.png" id="3_xao5e"]
-[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_lfpi6"]
-[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_h7ivj"]
-[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/dragon_anim_0002.png" id="6_kjhoc"]
+[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/old/You_anim_0001.png" id="3_xao5e"]
+[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/old/You_anim_0002.png" id="4_lfpi6"]
+[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/idle/dragon_anim_0001.png" id="5_h7ivj"]
+[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/idle/dragon_anim_0002.png" id="6_kjhoc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3pt4j"]
 animations = [{

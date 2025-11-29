@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw4obwr2unl3x"
-path="res://.godot/imported/dragon_anim_0002.png-3f43e2ae260f2865180c71c403fe1141.ctex"
+uid="uid://cru6w06n4bieo"
+path="res://.godot/imported/dragon_doodle_atk.png-69b7573174b6251a70d1b50ad68f2884.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Anim/Dragon/dragon_anim_0002.png"
-dest_files=["res://.godot/imported/dragon_anim_0002.png-3f43e2ae260f2865180c71c403fe1141.ctex"]
+source_file="res://Asset/Anim/Dragon/atk/dragon_doodle_atk.png"
+dest_files=["res://.godot/imported/dragon_doodle_atk.png-69b7573174b6251a70d1b50ad68f2884.ctex"]
 
 [params]
 

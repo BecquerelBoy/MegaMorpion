@@ -1,35 +1,110 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyjx3iwwvrndi"]
+[gd_scene load_steps=22 format=3 uid="uid://dyjx3iwwvrndi"]
 
 [ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_niuqk"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_ivsw0"]
-[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/You_anim_0001.png" id="3_xkjrg"]
-[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_dw4y8"]
-[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_k6g2x"]
-[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/dragon_anim_0002.png" id="6_6ejg6"]
+[ext_resource type="Texture2D" uid="uid://fbwhq0o62w06" path="res://Asset/Anim/You/atk/chevalier_doodle_atk.png" id="3_ivsw0"]
+[ext_resource type="Texture2D" uid="uid://dpcetpldfd3b2" path="res://Asset/Anim/You/Idle/chevalier_doodle_idle_0001.png" id="4_xkjrg"]
+[ext_resource type="Texture2D" uid="uid://hyq7w8y6he62" path="res://Asset/Anim/You/Idle/chevalier_doodle_idle_0002.png" id="5_dw4y8"]
+[ext_resource type="Texture2D" uid="uid://cru6w06n4bieo" path="res://Asset/Anim/Dragon/atk/dragon_doodle_atk.png" id="6_xkjrg"]
 [ext_resource type="Theme" uid="uid://dc8tj1ey2ejau" path="res://Ressource/ui_test_ia.tres" id="7_7x1h0"]
+[ext_resource type="Texture2D" uid="uid://dncrclldk2i5q" path="res://Asset/Anim/Dragon/idle/dragon_doodle_idle.png" id="7_ivsw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6g2x"]
+atlas = ExtResource("3_ivsw0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ejg6"]
+atlas = ExtResource("3_ivsw0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x1h0"]
+atlas = ExtResource("3_ivsw0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2ln4"]
+atlas = ExtResource("3_ivsw0")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3pt4j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_xkjrg")
+"texture": SubResource("AtlasTexture_k6g2x")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_6ejg6")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_7x1h0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_dw4y8")
+"texture": SubResource("AtlasTexture_n2ln4")
+}],
+"loop": false,
+"name": &"atk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xkjrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw4y8")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw4y8"]
+atlas = ExtResource("6_xkjrg")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_segys"]
+atlas = ExtResource("6_xkjrg")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkm55"]
+atlas = ExtResource("6_xkjrg")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxr4g"]
+atlas = ExtResource("6_xkjrg")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkjrg"]
+atlas = ExtResource("7_ivsw0")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpwvu"]
+atlas = ExtResource("7_ivsw0")
+region = Rect2(256, 0, 256, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7y4ci"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_k6g2x")
+"texture": SubResource("AtlasTexture_dw4y8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_6ejg6")
+"texture": SubResource("AtlasTexture_segys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkm55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxr4g")
+}],
+"loop": false,
+"name": &"atk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkjrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpwvu")
 }],
 "loop": true,
 "name": &"default",
@@ -86,18 +161,18 @@ scale = Vector2(0.29427317, 0.29427317)
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="You" type="AnimatedSprite2D" parent="Characters"]
-visible = false
-position = Vector2(-385.00003, 1)
+position = Vector2(-432, -23)
 scale = Vector2(2.296875, 2.296875)
 sprite_frames = SubResource("SpriteFrames_3pt4j")
-frame_progress = 0.07075794
+animation = &"atk"
 
 [node name="dragon" type="AnimatedSprite2D" parent="Characters"]
-visible = false
-position = Vector2(466, -74.999985)
-scale = Vector2(1.4609375, 1.4609375)
+position = Vector2(371.00003, -54)
+scale = Vector2(1.6445314, 1.6445314)
 sprite_frames = SubResource("SpriteFrames_7y4ci")
-frame_progress = 0.19913895
+animation = &"atk"
+frame = 3
+frame_progress = 1.0
 
 [node name="WinLabel" type="Label" parent="."]
 offset_left = -168.0
@@ -109,6 +184,7 @@ label_settings = SubResource("LabelSettings_1xcnr")
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreLabel" type="Node2D" parent="."]
+visible = false
 
 [node name="GrandeCase1Score" type="Label" parent="ScoreLabel"]
 offset_left = -320.0
@@ -172,6 +248,7 @@ offset_bottom = 296.0
 text = "9"
 
 [node name="ScoreBar" type="Node2D" parent="."]
+visible = false
 
 [node name="GrandeCase1Bar" type="ProgressBar" parent="ScoreBar"]
 offset_left = -276.0
