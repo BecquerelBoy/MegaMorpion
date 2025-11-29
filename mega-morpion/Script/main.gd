@@ -36,7 +36,6 @@ func _ready():
 func _process(_delta):
 	GridEvaluator.update_all_scores(self)
 
-
 func _on_case_jouee(_grande_case_num, petite_case_num):
 	if game_over:
 		return
@@ -51,6 +50,9 @@ func _on_case_jouee(_grande_case_num, petite_case_num):
 	# Vérifier s'il y a un gagnant au Super Morpion
 	check_super_morpion()
 	
+	if game_over:
+		return
+	
 	# Alterner le joueur UNE SEULE FOIS
 	current_player = "circle" if current_player == "cross" else "cross"
 	
@@ -58,7 +60,7 @@ func _on_case_jouee(_grande_case_num, petite_case_num):
 	update_playable_cases()
 	
 	# Si c'est au tour de l'IA, elle joue
-	if current_player == "circle" and not game_over:
+	if current_player == "circle":
 		ia_play()
 
 func _on_petite_grille_gagnee(grande_case_num, winner):
@@ -163,7 +165,6 @@ func reset_game():
 	
 	update_playable_cases()
 
-# --- IA : joue pour les ronds en regardant le futur coup du joueur ---
 func ia_play():
 	if current_player != "circle" or game_over:
 		return
@@ -185,14 +186,12 @@ func ia_play():
 				continue
 
 			# Simulation : l'IA jouerait dans (i, j)
-			# Le joueur devra jouer ensuite dans la grande case "next_big" = j
 			var next_big = j
 
 			# Si la case de destination est déjà finie => joueur peut jouer n'importe où
 			if grande_case_states.get(next_big, null) != null:
 				next_big = null
 
-			# On calcule le score que l'IA veut maximiser : le score des ronds dans la future grande case
 			var predicted_score = evaluate_future_case_with_simulation(i, j, next_big)
 
 			if predicted_score > best_score:
@@ -204,8 +203,28 @@ func ia_play():
 	if best_grande != null and best_petite != null:
 		var chosen_case = grandes_cases[best_grande - 1]
 		await get_tree().create_timer(0.25).timeout
-		# On appelle directement place_symbol sur la grande case choisie
+		
+		# Placer le symbole SANS passer par le signal
 		chosen_case.place_symbol_forced(best_petite, "circle")
+		
+		# Gérer manuellement la suite du jeu
+		next_grande_case = best_petite
+		
+		# Si la case de destination est déjà gagnée ou nulle, on peut jouer n'importe où
+		if grande_case_states[next_grande_case] != null:
+			next_grande_case = null
+		
+		# Vérifier s'il y a un gagnant au Super Morpion
+		check_super_morpion()
+		
+		if game_over:
+			return
+		
+		# Repasser au joueur humain
+		current_player = "cross"
+		
+		# Mettre à jour les cases jouables
+		update_playable_cases()
 
 
 # Évalue la "valeur" de la future grande case où le JOUEUR devra jouer,

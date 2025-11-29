@@ -151,8 +151,6 @@ func place_symbol(case_number):
 	# Vérifier s'il y a un gagnant dans cette petite grille
 	check_winner()
 
-# Place un symbole en forçant quel joueur (utile pour IA).
-# player_forced doit être "cross" ou "circle".
 func place_symbol_forced(case_number: int, player_forced: String) -> void:
 	# sécurité : ne rien faire si case occupée ou grille gagnée
 	if grid_state[case_number] != null or is_won:
@@ -181,12 +179,11 @@ func place_symbol_forced(case_number: int, player_forced: String) -> void:
 	new_symbol.position = Vector2.ZERO
 	cshape.add_child(new_symbol)
 
-	# Émettre le signal comme d'habitude
-	emit_signal("case_jouee", grande_case_number, case_number)
+	# NE PAS émettre le signal quand c'est l'IA qui joue
+	# emit_signal("case_jouee", grande_case_number, case_number)
 
 	# Vérifier si gagnant
 	check_winner()
-
 
 func check_winner():
 	# Combinaisons gagnantes
