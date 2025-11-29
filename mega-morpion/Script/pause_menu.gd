@@ -13,14 +13,6 @@ func _ready() -> void:
 	MusicManager.restore_volume(0.8)
 	animation_player.play("fade_in")
 	
-	# Connecter les signaux des boutons
-	resume.pressed.connect(_on_resume_pressed)
-	main_menu.pressed.connect(_on_main_menu_pressed)
-	
-	# Connecter les signaux pour les animations des AnimatedSprite2D (souris)
-	resume.mouse_entered.connect(_on_resume_mouse_entered)
-	main_menu.mouse_entered.connect(_on_main_menu_mouse_entered)
-	
 	if main_theme.stream:
 		MusicManager.play_music(main_theme.stream, 1.0)
 

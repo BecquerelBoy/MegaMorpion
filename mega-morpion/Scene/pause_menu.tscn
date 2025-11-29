@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dlckbqy80trbh"]
+[gd_scene load_steps=35 format=3 uid="uid://dlckbqy80trbh"]
 
 [ext_resource type="Script" uid="uid://dw1jq2dculaht" path="res://Script/pause_menu.gd" id="1_vpppi"]
 [ext_resource type="Shader" uid="uid://pvwd44pstu3p" path="res://Scene/pause_menu.gdshader" id="2_1eq5e"]
@@ -39,6 +39,10 @@ shader = ExtResource("2_1eq5e")
 shader_parameter/blur_amount = 4.000000285
 shader_parameter/mix_amount = 0.150000007125
 shader_parameter/color_over = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_c7fen"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_orcqd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50289, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -237,6 +241,7 @@ grow_vertical = 2
 scale = Vector2(3.5, 3.5)
 pivot_offset = Vector2(31.58, 9.185)
 script = ExtResource("2_yk0kx")
+hover_scale_curve = SubResource("Curve_c7fen")
 press_scale_curve = SubResource("Curve_orcqd")
 
 [node name="ButtonPlayAnim" type="AnimatedSprite2D" parent="CanvasLayer/Resume"]

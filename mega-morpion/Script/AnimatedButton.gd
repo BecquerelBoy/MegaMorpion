@@ -6,7 +6,7 @@ class_name CustomButton
 @export var press_scale_curve: Curve
 
 # Paramètres d'animation
-@export var hover_duration: float = 0.3
+@export var hover_duration: float = 0.1
 @export var press_duration: float = 0.2
 @export var hover_max_scale: float = 1.2
 @export var press_max_scale: float = 1.4
@@ -14,7 +14,7 @@ class_name CustomButton
 # Variables internes
 var original_scale: Vector2
 var current_tween: Tween
-var is_hovered: bool = false
+var is_button_hovered: bool = false
 
 func _ready():
 	# Sauvegarder la taille originale
@@ -30,21 +30,21 @@ func _ready():
 	button_up.connect(_on_button_up)
 
 func _on_mouse_entered():
-	is_hovered = true
+	is_button_hovered = true
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	animate_with_curve(hover_scale_curve, hover_max_scale, hover_duration)
 
 func _on_mouse_exited():
-	is_hovered = false
+	is_button_hovered = false
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 	animate_to_original_size()
 
 func _on_button_down():
-	if is_hovered:
+	if is_button_hovered:
 		animate_with_curve(press_scale_curve, press_max_scale, press_duration)
 
 func _on_button_up():
-	if is_hovered:
+	if is_button_hovered:
 		# Retourner à la taille de hover après le press
 		animate_with_curve(hover_scale_curve, hover_max_scale, hover_duration)
 

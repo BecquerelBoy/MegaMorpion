@@ -59,7 +59,7 @@ func _on_dragon_animation_finished():
 	if dragon.animation == "atk":
 		dragon.play("default")
 
-func _on_case_jouee(grande_case_num, petite_case_num):
+func _on_case_jouee(_grande_case_num, petite_case_num):
 	# Jouer l'animation d'attaque du joueur
 	you.play("atk")
 	
@@ -276,7 +276,7 @@ func evaluate_move_with_depth(ia_big: int, ia_small: int) -> float:
 		base_score += 10.0  # Gagner une grande case est excellent
 	
 	# 2. Évaluer si ce coup bloque une victoire adverse
-	var sim_cross = GameState.big_grid_state[ia_big]["cross"]
+	var _sim_cross = GameState.big_grid_state[ia_big]["cross"]
 	if check_would_win(ia_big, ia_small, "cross"):
 		base_score += 5.0  # Bloquer une victoire est important
 	
