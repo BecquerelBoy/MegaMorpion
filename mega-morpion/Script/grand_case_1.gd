@@ -56,7 +56,7 @@ func _on_case_clicked(_viewport, event, _shape_idx, case_number):
 
 func _on_case_mouse_entered(case_number):
 	# → Lancer l'animation de la grande case où l'adversaire devra jouer
-	var main_scene = get_tree().get_root().get_node("Main")
+	var main_scene = get_tree().get_root().get_node("Level_1")
 	var grande_grille = main_scene.get_node("GrandeGrille")
 
 	# Récupérer la prochaine grande case
@@ -80,7 +80,7 @@ func _on_case_mouse_entered(case_number):
 
 func _on_case_mouse_exited(case_number):
 	# → Arrêter l’animation de la grande case cible quand on quitte la case
-	var main_scene = get_tree().get_root().get_node("Main")
+	var main_scene = get_tree().get_root().get_node("Level_1")
 	var grande_grille = main_scene.get_node("GrandeGrille")
 	var target_case = grande_grille.get_node("GrandeCase" + str(case_number))
 	
@@ -150,6 +150,43 @@ func place_symbol(case_number):
 	
 	# Vérifier s'il y a un gagnant dans cette petite grille
 	check_winner()
+
+# Place un symbole en forçant quel joueur (utile pour IA).
+# player_forced doit être "cross" ou "circle".
+func place_symbol_forced(case_number: int, player_forced: String) -> void:
+	# sécurité : ne rien faire si case occupée ou grille gagnée
+	if grid_state[case_number] != null or is_won:
+		return
+	
+	# Enregistrer dans le GameState
+	GameState.register_symbol(grande_case_number, case_number, player_forced)
+
+	# Cacher l'aperçu
+	hide_preview()
+
+	var case_node = shapes[case_number - 1]
+	var cshape = case_node.get_node("CShape" + str(case_number))
+
+	# Créer la bonne sprite selon player_forced
+	var new_symbol
+	if player_forced == "cross":
+		new_symbol = red_cross.duplicate()
+		grid_state[case_number] = "cross"
+	else:
+		new_symbol = blue_circle.duplicate()
+		grid_state[case_number] = "circle"
+
+	new_symbol.modulate = Color(1, 1, 1, 1)
+	new_symbol.visible = true
+	new_symbol.position = Vector2.ZERO
+	cshape.add_child(new_symbol)
+
+	# Émettre le signal comme d'habitude
+	emit_signal("case_jouee", grande_case_number, case_number)
+
+	# Vérifier si gagnant
+	check_winner()
+
 
 func check_winner():
 	# Combinaisons gagnantes

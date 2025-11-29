@@ -48,14 +48,18 @@ func _on_case_jouee(_grande_case_num, petite_case_num):
 	if grande_case_states[next_grande_case] != null:
 		next_grande_case = null
 	
-	# Alterner le joueur
+	# Vérifier s'il y a un gagnant au Super Morpion
+	check_super_morpion()
+	
+	# Alterner le joueur UNE SEULE FOIS
 	current_player = "circle" if current_player == "cross" else "cross"
 	
 	# Mettre à jour les cases jouables
 	update_playable_cases()
 	
-	# Vérifier s'il y a un gagnant au Super Morpion
-	check_super_morpion()
+	# Si c'est au tour de l'IA, elle joue
+	if current_player == "circle" and not game_over:
+		ia_play()
 
 func _on_petite_grille_gagnee(grande_case_num, winner):
 	grande_case_states[grande_case_num] = winner
@@ -158,6 +162,104 @@ func reset_game():
 		grandes_cases[i - 1].reset_grid()
 	
 	update_playable_cases()
+
+# --- IA : joue pour les ronds en regardant le futur coup du joueur ---
+func ia_play():
+	if current_player != "circle" or game_over:
+		return
+
+	var best_grande = null
+	var best_petite = null
+	var best_score = -INF
+
+	# Parcourt toutes les grandes cases
+	for i in range(1, 10):
+		var grande_case = grandes_cases[i - 1]
+		# Ne considérer que les grandes cases jouables
+		if not grande_case.is_playable:
+			continue
+
+		# Parcourt toutes les petites cases libres dans cette grande case
+		for j in range(1, 10):
+			if grande_case.grid_state[j] != null:
+				continue
+
+			# Simulation : l'IA jouerait dans (i, j)
+			# Le joueur devra jouer ensuite dans la grande case "next_big" = j
+			var next_big = j
+
+			# Si la case de destination est déjà finie => joueur peut jouer n'importe où
+			if grande_case_states.get(next_big, null) != null:
+				next_big = null
+
+			# On calcule le score que l'IA veut maximiser : le score des ronds dans la future grande case
+			var predicted_score = evaluate_future_case_with_simulation(i, j, next_big)
+
+			if predicted_score > best_score:
+				best_score = predicted_score
+				best_grande = i
+				best_petite = j
+
+	# Jouer le meilleur coup trouvé (si un existe)
+	if best_grande != null and best_petite != null:
+		var chosen_case = grandes_cases[best_grande - 1]
+		await get_tree().create_timer(0.25).timeout
+		# On appelle directement place_symbol sur la grande case choisie
+		chosen_case.place_symbol_forced(best_petite, "circle")
+
+
+# Évalue la "valeur" de la future grande case où le JOUEUR devra jouer,
+# en tenant compte d'une simulation où l'IA aurait joué (simulated_big, simulated_small).
+# - simulated_big, simulated_small : emplacement simulé du coup de l'IA (1..9)
+# - target_big_case : la grande case où le joueur devra jouer après (ou null si joueur peut jouer n'importe où)
+# Retourne un float (plus élevé = meilleur pour les ronds)
+func evaluate_future_case_with_simulation(simulated_big: int, simulated_small: int, target_big_case):
+	# Si target_big_case == null -> joueur peut jouer n'importe où :
+	# on prend le meilleur score parmi toutes les grandes cases jouables après la simulation.
+	# Simulation n'affecte que la grande case simulated_big.
+	# Pour simuler, on modifie temporairement GameState.big_grid_state.
+
+	# Préparation : savoir si on doit simuler (seulement si simulated_big valide)
+	var did_simulate := false
+	if simulated_big >= 1 and simulated_big <= 9:
+		# Ajouter temporairement la position dans GameState
+		var sim_list = GameState.big_grid_state[simulated_big]["circle"]
+		# éviter double-ajout si la position est déjà présente (au cas où)
+		if simulated_small not in sim_list:
+			sim_list.append(simulated_small)
+			did_simulate = true
+
+	# Calcul du score après simulation
+	var result_score := -INF
+
+	if target_big_case == null:
+		# joueur peut jouer partout -> on regarde toutes les grandes cases encore jouables
+		for k in range(1, 10):
+			if grande_case_states.get(k, null) != null:
+				continue
+			var s = GridEvaluator.evaluate_big_case(k)
+			# On maximise le score pour les ronds
+			if s > result_score:
+				result_score = s
+	else:
+		# joueur forcé dans target_big_case
+		# si la target est finie (par sécurité), on retourne -INF
+		if grande_case_states.get(target_big_case, null) != null:
+			result_score = -INF
+		else:
+			result_score = GridEvaluator.evaluate_big_case(target_big_case)
+
+	# Annuler la simulation si on l'a faite
+	if did_simulate:
+		var sim_list2 = GameState.big_grid_state[simulated_big]["circle"]
+		# retirer la première occurrence de simulated_small
+		for idx in range(sim_list2.size()):
+			if sim_list2[idx] == simulated_small:
+				sim_list2.remove_at(idx)
+				break
+
+	return result_score
+
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):  # Touche Entrée

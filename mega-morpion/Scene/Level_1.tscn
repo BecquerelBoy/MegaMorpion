@@ -1,21 +1,21 @@
 [gd_scene load_steps=11 format=3 uid="uid://dyjx3iwwvrndi"]
 
-[ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_sblpm"]
-[ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_r34rm"]
-[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/You_anim_0001.png" id="3_1xcnr"]
-[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_ow1sv"]
-[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_75buv"]
-[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/dragon_anim_0002.png" id="6_c2iwn"]
-[ext_resource type="Theme" uid="uid://dc8tj1ey2ejau" path="res://Ressource/ui_test_ia.tres" id="7_ow1sv"]
+[ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_niuqk"]
+[ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_ivsw0"]
+[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/You_anim_0001.png" id="3_xkjrg"]
+[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_dw4y8"]
+[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_k6g2x"]
+[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/dragon_anim_0002.png" id="6_6ejg6"]
+[ext_resource type="Theme" uid="uid://dc8tj1ey2ejau" path="res://Ressource/ui_test_ia.tres" id="7_7x1h0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3pt4j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_1xcnr")
+"texture": ExtResource("3_xkjrg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ow1sv")
+"texture": ExtResource("4_dw4y8")
 }],
 "loop": true,
 "name": &"default",
@@ -26,10 +26,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_75buv")
+"texture": ExtResource("5_k6g2x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_c2iwn")
+"texture": ExtResource("6_6ejg6")
 }],
 "loop": true,
 "name": &"default",
@@ -41,45 +41,45 @@ font_size = 30
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_sblpm")
+[node name="Level_1" type="Node2D"]
+script = ExtResource("1_niuqk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="GrandeGrille" type="Node2D" parent="."]
 
-[node name="GrandeCase1" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase1" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(-182, -180)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase2" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase2" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(0, -180)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase3" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase3" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(181, -180)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase4" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase4" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(-182, 0)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase5" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase5" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase6" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase6" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(181, 0)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase7" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase7" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(-182, 181)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase8" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase8" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(0, 181)
 scale = Vector2(0.29427317, 0.29427317)
 
-[node name="GrandeCase9" parent="GrandeGrille" instance=ExtResource("2_r34rm")]
+[node name="GrandeCase9" parent="GrandeGrille" instance=ExtResource("2_ivsw0")]
 position = Vector2(181, 181)
 scale = Vector2(0.29427317, 0.29427317)
 
@@ -178,7 +178,7 @@ offset_left = -276.0
 offset_top = -293.0
 offset_right = -199.0
 offset_bottom = -281.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase2Bar" type="ProgressBar" parent="ScoreBar"]
@@ -186,7 +186,7 @@ offset_left = 19.0
 offset_top = -293.0
 offset_right = 96.0
 offset_bottom = -281.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase3Bar" type="ProgressBar" parent="ScoreBar"]
@@ -198,7 +198,7 @@ offset_top = -293.0
 offset_right = 394.0
 offset_bottom = -281.0
 grow_horizontal = 0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase4Bar" type="ProgressBar" parent="ScoreBar"]
@@ -206,7 +206,7 @@ offset_left = -358.0
 offset_top = -15.0
 offset_right = -281.0
 offset_bottom = -3.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase5Bar" type="ProgressBar" parent="ScoreBar"]
@@ -214,7 +214,7 @@ offset_left = -358.0
 offset_top = 54.0
 offset_right = -281.0
 offset_bottom = 66.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase6Bar" type="ProgressBar" parent="ScoreBar"]
@@ -222,7 +222,7 @@ offset_left = 307.0
 offset_top = -15.0
 offset_right = 384.0
 offset_bottom = -3.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase7Bar" type="ProgressBar" parent="ScoreBar"]
@@ -230,7 +230,7 @@ offset_left = -281.0
 offset_top = 285.0
 offset_right = -204.0
 offset_bottom = 297.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase8Bar" type="ProgressBar" parent="ScoreBar"]
@@ -238,7 +238,7 @@ offset_left = 27.0
 offset_top = 285.0
 offset_right = 104.0
 offset_bottom = 297.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
 
 [node name="GrandeCase9Bar" type="ProgressBar" parent="ScoreBar"]
@@ -246,5 +246,5 @@ offset_left = 317.0
 offset_top = 285.0
 offset_right = 394.0
 offset_bottom = 297.0
-theme = ExtResource("7_ow1sv")
+theme = ExtResource("7_7x1h0")
 show_percentage = false
