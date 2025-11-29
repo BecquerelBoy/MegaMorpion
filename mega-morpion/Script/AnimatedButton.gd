@@ -2,43 +2,49 @@ extends TextureButton
 class_name CustomButton
 
 # Courbes éditables dans l'inspecteur
-@export var focus_scale_curve: Curve
+@export var hover_scale_curve: Curve
 @export var press_scale_curve: Curve
 
 # Paramètres d'animation
-@export var focus_duration: float = 0.3
+@export var hover_duration: float = 0.3
 @export var press_duration: float = 0.2
-@export var focus_max_scale: float = 1.2
+@export var hover_max_scale: float = 1.2
 @export var press_max_scale: float = 1.4
 
 # Variables internes
 var original_scale: Vector2
 var current_tween: Tween
-var is_focused: bool = false
+var is_hovered: bool = false
 
 func _ready():
 	# Sauvegarder la taille originale
 	original_scale = scale
 	
-	# Configurer le bouton pour recevoir le focus
-	focus_mode = Control.FOCUS_ALL
+	# Désactiver complètement le focus
+	focus_mode = Control.FOCUS_NONE
 	
-	# Connecter les signaux
-	focus_entered.connect(_on_focus_entered)
-	focus_exited.connect(_on_focus_exited)
+	# Connecter uniquement les signaux de souris
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
 
-func _on_focus_entered():
-	is_focused = true
-	animate_with_curve(focus_scale_curve, focus_max_scale, focus_duration)
+func _on_mouse_entered():
+	is_hovered = true
+	animate_with_curve(hover_scale_curve, hover_max_scale, hover_duration)
 
-func _on_focus_exited():
-	is_focused = false
+func _on_mouse_exited():
+	is_hovered = false
 	animate_to_original_size()
 
 func _on_button_down():
-	if is_focused:
+	if is_hovered:
 		animate_with_curve(press_scale_curve, press_max_scale, press_duration)
+
+func _on_button_up():
+	if is_hovered:
+		# Retourner à la taille de hover après le press
+		animate_with_curve(hover_scale_curve, hover_max_scale, hover_duration)
 
 func animate_with_curve(curve: Curve, max_scale: float, duration: float):
 	# Arrêter l'animation précédente
