@@ -165,6 +165,7 @@ func reset_game():
 	
 	update_playable_cases()
 
+# --- IA : joue pour les ronds avec analyse des coups adverses ---
 func ia_play():
 	if current_player != "circle" or game_over:
 		return
@@ -185,17 +186,11 @@ func ia_play():
 			if grande_case.grid_state[j] != null:
 				continue
 
-			# Simulation : l'IA jouerait dans (i, j)
-			var next_big = j
+			# Évaluer ce coup en profondeur
+			var move_score = evaluate_move_with_depth(i, j)
 
-			# Si la case de destination est déjà finie => joueur peut jouer n'importe où
-			if grande_case_states.get(next_big, null) != null:
-				next_big = null
-
-			var predicted_score = evaluate_future_case_with_simulation(i, j, next_big)
-
-			if predicted_score > best_score:
-				best_score = predicted_score
+			if move_score > best_score:
+				best_score = move_score
 				best_grande = i
 				best_petite = j
 
@@ -227,57 +222,144 @@ func ia_play():
 		update_playable_cases()
 
 
-# Évalue la "valeur" de la future grande case où le JOUEUR devra jouer,
-# en tenant compte d'une simulation où l'IA aurait joué (simulated_big, simulated_small).
-# - simulated_big, simulated_small : emplacement simulé du coup de l'IA (1..9)
-# - target_big_case : la grande case où le joueur devra jouer après (ou null si joueur peut jouer n'importe où)
-# Retourne un float (plus élevé = meilleur pour les ronds)
-func evaluate_future_case_with_simulation(simulated_big: int, simulated_small: int, target_big_case):
-	# Si target_big_case == null -> joueur peut jouer n'importe où :
-	# on prend le meilleur score parmi toutes les grandes cases jouables après la simulation.
-	# Simulation n'affecte que la grande case simulated_big.
-	# Pour simuler, on modifie temporairement GameState.big_grid_state.
+# Évalue un coup de l'IA en simulant les réponses possibles du joueur
+func evaluate_move_with_depth(ia_big: int, ia_small: int) -> float:
+	# Déterminer où le joueur devra jouer après ce coup
+	var player_next_big = ia_small
+	if grande_case_states.get(player_next_big, null) != null:
+		player_next_big = null  # Joueur peut jouer partout
+	
+	# Simuler le coup de l'IA
+	var sim_list = GameState.big_grid_state[ia_big]["circle"]
+	sim_list.append(ia_small)
+	
+	# Score initial : évaluation directe de la position
+	var base_score = 0.0
+	
+	# 1. Évaluer si ce coup gagne la grande case
+	if check_simulated_win(ia_big, "circle"):
+		base_score += 10.0  # Gagner une grande case est excellent
+	
+	# 2. Évaluer si ce coup bloque une victoire adverse
+	var _sim_cross = GameState.big_grid_state[ia_big]["cross"]
+	if check_would_win(ia_big, ia_small, "cross"):
+		base_score += 5.0  # Bloquer une victoire est important
+	
+	# 3. Analyser les coups possibles du joueur
+	var player_responses_score = analyze_player_responses(player_next_big)
+	
+	# Le score final combine la valeur du coup ET les opportunités laissées à l'adversaire
+	var final_score = base_score - player_responses_score
+	
+	# Annuler la simulation
+	sim_list.erase(ia_small)
+	
+	return final_score
 
-	# Préparation : savoir si on doit simuler (seulement si simulated_big valide)
-	var did_simulate := false
-	if simulated_big >= 1 and simulated_big <= 9:
-		# Ajouter temporairement la position dans GameState
-		var sim_list = GameState.big_grid_state[simulated_big]["circle"]
-		# éviter double-ajout si la position est déjà présente (au cas où)
-		if simulated_small not in sim_list:
-			sim_list.append(simulated_small)
-			did_simulate = true
 
-	# Calcul du score après simulation
-	var result_score := -INF
-
-	if target_big_case == null:
-		# joueur peut jouer partout -> on regarde toutes les grandes cases encore jouables
-		for k in range(1, 10):
-			if grande_case_states.get(k, null) != null:
-				continue
-			var s = GridEvaluator.evaluate_big_case(k)
-			# On maximise le score pour les ronds
-			if s > result_score:
-				result_score = s
+# Analyse tous les coups possibles du joueur après un coup de l'IA
+func analyze_player_responses(player_next_big) -> float:
+	var worst_case_for_ia = -INF  # Le meilleur score que le joueur peut obtenir
+	
+	if player_next_big == null:
+		# Le joueur peut jouer partout : analyser toutes les grandes cases
+		for big_idx in range(1, 10):
+			if grande_case_states.get(big_idx, null) != null:
+				continue  # Case déjà gagnée
+			
+			var best_in_case = analyze_player_moves_in_case(big_idx)
+			if best_in_case > worst_case_for_ia:
+				worst_case_for_ia = best_in_case
 	else:
-		# joueur forcé dans target_big_case
-		# si la target est finie (par sécurité), on retourne -INF
-		if grande_case_states.get(target_big_case, null) != null:
-			result_score = -INF
+		# Le joueur est forcé dans une case spécifique
+		if grande_case_states.get(player_next_big, null) == null:
+			worst_case_for_ia = analyze_player_moves_in_case(player_next_big)
 		else:
-			result_score = GridEvaluator.evaluate_big_case(target_big_case)
+			# La case est déjà gagnée, le joueur peut jouer partout
+			for big_idx in range(1, 10):
+				if grande_case_states.get(big_idx, null) != null:
+					continue
+				
+				var best_in_case = analyze_player_moves_in_case(big_idx)
+				if best_in_case > worst_case_for_ia:
+					worst_case_for_ia = best_in_case
+	
+	return worst_case_for_ia if worst_case_for_ia != -INF else 0.0
 
-	# Annuler la simulation si on l'a faite
-	if did_simulate:
-		var sim_list2 = GameState.big_grid_state[simulated_big]["circle"]
-		# retirer la première occurrence de simulated_small
-		for idx in range(sim_list2.size()):
-			if sim_list2[idx] == simulated_small:
-				sim_list2.remove_at(idx)
-				break
 
-	return result_score
+# Analyse tous les coups possibles du joueur dans une grande case donnée
+func analyze_player_moves_in_case(big_idx: int) -> float:
+	var grande_case = grandes_cases[big_idx - 1]
+	var best_player_score = -INF
+	
+	for small_idx in range(1, 10):
+		if grande_case.grid_state[small_idx] != null:
+			continue
+		
+		# Simuler le coup du joueur
+		var sim_cross = GameState.big_grid_state[big_idx]["cross"]
+		sim_cross.append(small_idx)
+		
+		var move_value = 0.0
+		
+		# Le joueur gagne-t-il cette grande case ?
+		if check_simulated_win(big_idx, "cross"):
+			move_value += 8.0  # Très mauvais pour l'IA
+		
+		# Le joueur bloque-t-il une victoire de l'IA ?
+		if check_would_win(big_idx, small_idx, "circle"):
+			move_value += 3.0
+		
+		# Évaluer la case où l'IA devra jouer ensuite
+		var ia_next_big = small_idx
+		if grande_case_states.get(ia_next_big, null) != null:
+			ia_next_big = null
+		
+		# Ajouter le score de la position résultante
+		if ia_next_big == null:
+			# L'IA peut jouer partout : trouver la meilleure case pour l'IA
+			var best_ia_case_score = -INF
+			for next_big in range(1, 10):
+				if grande_case_states.get(next_big, null) == null:
+					var case_score = GridEvaluator.evaluate_big_case(next_big)
+					if case_score > best_ia_case_score:
+						best_ia_case_score = case_score
+			move_value -= best_ia_case_score  # Moins c'est bon pour l'IA, plus c'est mauvais
+		else:
+			# L'IA est forcée dans une case : évaluer cette case
+			var forced_score = GridEvaluator.evaluate_big_case(ia_next_big)
+			move_value -= forced_score
+		
+		# Annuler la simulation
+		sim_cross.erase(small_idx)
+		
+		if move_value > best_player_score:
+			best_player_score = move_value
+	
+	return best_player_score if best_player_score != -INF else 0.0
+
+
+# Vérifie si un coup gagnerait une grande case (sans le placer réellement)
+func check_would_win(big_idx: int, small_idx: int, player: String) -> bool:
+	var positions = GameState.big_grid_state[big_idx][player].duplicate()
+	positions.append(small_idx)
+	
+	for combo in [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]:
+		if combo[0] in positions and combo[1] in positions and combo[2] in positions:
+			return true
+	
+	return false
+
+
+# Vérifie si une grande case est gagnée dans la simulation actuelle
+func check_simulated_win(big_idx: int, player: String) -> bool:
+	var positions = GameState.big_grid_state[big_idx][player]
+	
+	for combo in [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]:
+		if combo[0] in positions and combo[1] in positions and combo[2] in positions:
+			return true
+	
+	return false
 
 
 func _input(event):
