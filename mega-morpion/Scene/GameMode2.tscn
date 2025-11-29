@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5nf1xt0t3gx8"]
+[gd_scene load_steps=11 format=3 uid="uid://b5nf1xt0t3gx8"]
 
-[ext_resource type="Script" uid="uid://blkpgpfit5upc" path="res://Script/main.gd" id="1_mex7t"]
+[ext_resource type="Script" uid="uid://ce6vqrsnyaw7f" path="res://Script/game_mode_2.gd" id="1_mex7t"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_sur0u"]
+[ext_resource type="Script" uid="uid://ddpgif4thg860" path="res://Script/grand_case_GM2.gd" id="3_sur0u"]
 [ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/You_anim_0001.png" id="3_xao5e"]
 [ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/You_anim_0002.png" id="4_lfpi6"]
 [ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/dragon_anim_0001.png" id="5_h7ivj"]
@@ -50,37 +51,46 @@ script = ExtResource("1_mex7t")
 [node name="GrandeCase1" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(-182, -180)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase2" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(0, -180)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase3" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(181, -180)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase4" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(-182, 0)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase5" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase6" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(181, 0)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase7" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(-182, 181)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase8" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(0, 181)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="GrandeCase9" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
 position = Vector2(181, 181)
 scale = Vector2(0.29427317, 0.29427317)
+script = ExtResource("3_sur0u")
 
 [node name="Characters" type="Node2D" parent="."]
 

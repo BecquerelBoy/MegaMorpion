@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcry3rx1l2oth"
-path="res://.godot/imported/knightactoe_title.png-7ca9ed0684eacb303020106e2860091e.ctex"
+uid="uid://bkk4tn830o05v"
+path="res://.godot/imported/1v1_button_anim_0003.png-8f2fc3e87f7d535a64c1650bcb98809c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Menu/MainMenu/Button/knightactoe_title.png"
-dest_files=["res://.godot/imported/knightactoe_title.png-7ca9ed0684eacb303020106e2860091e.ctex"]
+source_file="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0003.png"
+dest_files=["res://.godot/imported/1v1_button_anim_0003.png-8f2fc3e87f7d535a64c1650bcb98809c.ctex"]
 
 [params]
 

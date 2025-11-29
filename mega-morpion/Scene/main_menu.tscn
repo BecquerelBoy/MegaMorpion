@@ -1,10 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://b4ab8mv5n4god"]
+[gd_scene load_steps=31 format=3 uid="uid://b4ab8mv5n4god"]
 
 [ext_resource type="Script" uid="uid://egagphwun1k3" path="res://Script/main_menu.gd" id="1_flytq"]
 [ext_resource type="Texture2D" uid="uid://bsw06lxlds38r" path="res://Asset/Menu/MainMenu/Button/PlayV2.png" id="3_2cldk"]
 [ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/AnimatedButton.gd" id="3_r66qg"]
 [ext_resource type="Texture2D" uid="uid://dpephkaf3vgr6" path="res://Asset/Menu/MainMenu/Button/Quit.png" id="4_x1bcu"]
+[ext_resource type="Texture2D" uid="uid://br0yhmlln3ylp" path="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0001.png" id="4_yok32"]
+[ext_resource type="Texture2D" uid="uid://bhq3coynpye2n" path="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0002.png" id="5_klvvj"]
 [ext_resource type="Texture2D" uid="uid://ds08ucx3piyd0" path="res://Asset/Menu/MainMenu/Image/knightactoe_title.png" id="5_pvidh"]
+[ext_resource type="Texture2D" uid="uid://bkk4tn830o05v" path="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0003.png" id="6_47k5r"]
+[ext_resource type="Texture2D" uid="uid://cwvrhgxheffkw" path="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0004.png" id="7_hag5k"]
+[ext_resource type="Texture2D" uid="uid://cdu8wjaoae6y7" path="res://Asset/Menu/MainMenu/Button/1v1/1v1_button_anim_0005.png" id="8_4ckpx"]
 
 [sub_resource type="Animation" id="Animation_u2785"]
 length = 0.001
@@ -91,6 +96,29 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_shpw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yok32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_klvvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_47k5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hag5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4ckpx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_817de"]
 atlas = ExtResource("4_x1bcu")
 region = Rect2(0, 0, 64, 64)
@@ -167,7 +195,7 @@ anchor_bottom = 0.5
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 11.428558
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3.5, 3.5)
@@ -178,10 +206,22 @@ focus_scale_curve = SubResource("Curve_ow4pr")
 press_scale_curve = SubResource("Curve_orcqd")
 
 [node name="ButtonPlayAnim" type="AnimatedSprite2D" parent="CanvasLayer/Play"]
-position = Vector2(20.75, 26)
+position = Vector2(18.57143, 16.285717)
+scale = Vector2(0.6266742, 0.6266742)
 sprite_frames = SubResource("SpriteFrames_r1fdq")
 animation = &"Play"
-frame_progress = 1.0
+
+[node name="1v1" type="TextureButton" parent="CanvasLayer"]
+offset_left = 521.0
+offset_top = 381.0
+offset_right = 630.0
+offset_bottom = 442.0
+script = ExtResource("3_r66qg")
+metadata/_custom_type_script = "uid://ba1uqiu310jud"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/1v1"]
+position = Vector2(53, 29)
+sprite_frames = SubResource("SpriteFrames_shpw1")
 
 [node name="Quit" type="TextureButton" parent="CanvasLayer"]
 anchors_preset = 8
@@ -189,10 +229,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 160.0
-offset_right = 20.0
-offset_bottom = 200.0
+offset_left = -15.0
+offset_top = 189.0
+offset_right = 21.571411
+offset_bottom = 212.14288
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3.5, 3.5)
@@ -203,7 +243,8 @@ focus_scale_curve = SubResource("Curve_ow4pr")
 press_scale_curve = SubResource("Curve_orcqd")
 
 [node name="ButtonQuitAnim" type="AnimatedSprite2D" parent="CanvasLayer/Quit"]
-position = Vector2(19, 25)
+position = Vector2(18.285715, 11.714286)
+scale = Vector2(0.52455354, 0.52455354)
 sprite_frames = SubResource("SpriteFrames_dpjfi")
 animation = &"Quit"
 
@@ -232,3 +273,5 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="MainTheme" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/1v1" to="." method="_on_v_1_pressed"]

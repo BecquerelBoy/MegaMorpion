@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MegaMorpion"
-run/main_scene="uid://dyjx3iwwvrndi"
+run/main_scene="uid://b4ab8mv5n4god"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Asset/vrac/icon.svg"
 
