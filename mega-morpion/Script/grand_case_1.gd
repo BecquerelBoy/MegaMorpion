@@ -52,7 +52,8 @@ func _ready():
 func _on_case_clicked(_viewport, event, _shape_idx, case_number):
 	# Vérifier si c'est un clic gauche, si la case est vide et si cette grille est jouable
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if grid_state[case_number] == null and is_playable and not is_won:
+		# AJOUT : Vérifier que c'est bien le tour du joueur humain (cross)
+		if grid_state[case_number] == null and is_playable and not is_won and current_player == "cross":
 			place_symbol(case_number)
 
 func _on_case_mouse_entered(case_number):
@@ -97,17 +98,18 @@ func _on_case_mouse_exited(case_number):
 
 
 func show_preview(case_number):
+	# Ne montrer l'aperçu que si c'est le tour du joueur humain
+	if current_player != "cross":
+		return
+	
 	# Supprimer l'ancien aperçu s'il existe
 	hide_preview()
 	
 	var case_node = shapes[case_number - 1]
 	var cshape = case_node.get_node("CShape" + str(case_number))
 	
-	# Créer un aperçu du symbole
-	if current_player == "cross":
-		preview_symbol = red_cross.duplicate()
-	else:
-		preview_symbol = blue_circle.duplicate()
+	# Créer un aperçu du symbole (toujours une croix)
+	preview_symbol = red_cross.duplicate()
 	
 	# Rendre le symbole semi-transparent pour l'aperçu
 	preview_symbol.modulate = Color(1, 1, 1, 0.5)
@@ -122,6 +124,10 @@ func hide_preview():
 		preview_symbol = null
 
 func place_symbol(case_number):
+	# Sécurité : ne placer que si c'est le tour du joueur humain
+	if current_player != "cross":
+		print("Erreur : tentative de placer un symbole alors que ce n'est pas le tour du joueur")
+		return
 	
 	GameState.register_symbol(grande_case_number, case_number, current_player)
 
@@ -131,14 +137,9 @@ func place_symbol(case_number):
 	var case_node = shapes[case_number - 1]
 	var cshape = case_node.get_node("CShape" + str(case_number))
 	
-	# Créer une copie du sprite approprié
-	var new_symbol
-	if current_player == "cross":
-		new_symbol = red_cross.duplicate()
-		grid_state[case_number] = "cross"
-	else:
-		new_symbol = blue_circle.duplicate()
-		grid_state[case_number] = "circle"
+	# Créer une copie du sprite approprié (toujours une croix pour le joueur)
+	var new_symbol = red_cross.duplicate()
+	grid_state[case_number] = "cross"
 	
 	# Positionner et afficher le symbole (opacité normale)
 	new_symbol.modulate = Color(1, 1, 1, 1)
