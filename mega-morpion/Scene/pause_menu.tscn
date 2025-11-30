@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlckbqy80trbh"]
+[gd_scene load_steps=46 format=3 uid="uid://dlckbqy80trbh"]
 
 [ext_resource type="Script" uid="uid://dw1jq2dculaht" path="res://Script/pause_menu.gd" id="1_vpppi"]
 [ext_resource type="Shader" uid="uid://pvwd44pstu3p" path="res://Scene/pause_menu.gdshader" id="2_1eq5e"]
 [ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/AnimatedButton.gd" id="2_yk0kx"]
 [ext_resource type="Texture2D" uid="uid://bfhlac8mf6wws" path="res://Asset/Menu/PauseMenu/resume.png" id="4_48vd4"]
+[ext_resource type="Texture2D" uid="uid://ee3w42qw86ea" path="res://Asset/Menu/PauseMenu/RETRY.png" id="5_c7fen"]
 [ext_resource type="Texture2D" uid="uid://cfryi3v13rkdm" path="res://Asset/Menu/PauseMenu/main_menu.png" id="5_nkw6i"]
 [ext_resource type="Texture2D" uid="uid://d3rql1ppofgxp" path="res://Asset/Menu/PauseMenu/pause.png" id="10_1eq5e"]
 
@@ -109,6 +110,71 @@ animations = [{
 }],
 "loop": false,
 "name": &"Play",
+"speed": 30.0
+}]
+
+[sub_resource type="Curve" id="Curve_vpppi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1eq5e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50188684, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xii5g"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joeea"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f40wx"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnsrp"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueuhg"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqmkk"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc388"]
+atlas = ExtResource("5_c7fen")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_un3lj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xii5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joeea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f40wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnsrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueuhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqmkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc388")
+}],
+"loop": false,
+"name": &"default",
 "speed": 30.0
 }]
 
@@ -250,6 +316,29 @@ scale = Vector2(0.4383372, 0.4383372)
 sprite_frames = SubResource("SpriteFrames_r1fdq")
 animation = &"Play"
 
+[node name="Retry" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = 69.0
+offset_right = 63.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(62.655, 21.51)
+script = ExtResource("2_yk0kx")
+hover_scale_curve = SubResource("Curve_vpppi")
+press_scale_curve = SubResource("Curve_1eq5e")
+metadata/_custom_type_script = "uid://ba1uqiu310jud"
+
+[node name="ButtonRetryAnim" type="AnimatedSprite2D" parent="CanvasLayer/Retry"]
+position = Vector2(63, 23)
+sprite_frames = SubResource("SpriteFrames_un3lj")
+
 [node name="MainMenu" type="TextureButton" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,9 +346,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -73.0
-offset_top = 59.0
+offset_top = 138.0
 offset_right = 73.0
-offset_bottom = 174.0
+offset_bottom = 253.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(72.88, 58.42)
@@ -292,5 +381,7 @@ texture = ExtResource("10_1eq5e")
 
 [connection signal="mouse_entered" from="CanvasLayer/Resume" to="." method="_on_resume_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Retry" to="." method="_on_retry_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_pressed"]

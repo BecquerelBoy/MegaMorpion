@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xiailmjcp5m"
-path="res://.godot/imported/Quit.png-76d41cc2fe42c738723ad8ca7a35ae90.ctex"
+uid="uid://ee3w42qw86ea"
+path="res://.godot/imported/RETRY.png-6af62ad2e3fdfc520e6c513a4cecaa7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Menu/MainMenu/Button/Quit.png"
-dest_files=["res://.godot/imported/Quit.png-76d41cc2fe42c738723ad8ca7a35ae90.ctex"]
+source_file="res://Asset/Menu/PauseMenu/RETRY.png"
+dest_files=["res://.godot/imported/RETRY.png-6af62ad2e3fdfc520e6c513a4cecaa7d.ctex"]
 
 [params]
 

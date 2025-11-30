@@ -177,23 +177,6 @@ func count_winner():
 	
 	update_playable_cases()
 
-func reset_game():
-	game_over = false
-	current_player = "cross"
-	next_grande_case = null
-	
-	# Cacher le label de victoire
-	win_label.visible = false
-	
-	# Réinitialiser les animations
-	you.play("default")
-	dragon.play("default")
-	
-	for i in range(1, 10):
-		grande_case_states[i] = null
-		grandes_cases[i - 1].reset_grid()
-	
-	update_playable_cases()
 
 # --- IA : joue pour les ronds avec analyse des coups adverses ---
 func ia_play():
@@ -395,11 +378,6 @@ func check_simulated_win(big_idx: int, player: String) -> bool:
 			return true
 	
 	return false
-
-
-func _input(event):
-	if event.is_action_pressed("ui_accept"):  # Touche Entrée
-		reset_game()
 
 
 func _on_pause_button_mouse_entered() -> void:

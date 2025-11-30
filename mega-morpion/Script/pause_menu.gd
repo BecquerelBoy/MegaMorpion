@@ -7,6 +7,7 @@ extends Control
 @onready var button_play_anim: AnimatedSprite2D = $CanvasLayer/Resume/ButtonPlayAnim
 @onready var button_main_menu_anim: AnimatedSprite2D = $CanvasLayer/MainMenu/ButtonMainMenuAnim
 @onready var main_theme: AudioStreamPlayer2D = $MainTheme
+@onready var button_retry_anim: AnimatedSprite2D = $CanvasLayer/Retry/ButtonRetryAnim
 
 func _ready() -> void:
 	await get_tree().create_timer(0.3).timeout
@@ -23,7 +24,14 @@ func _on_resume_mouse_entered() -> void:
 func _on_resume_pressed() -> void:
 	get_tree().paused = false
 	queue_free()
-	
+
+func _on_retry_mouse_entered() -> void:
+	button_retry_anim.play("default")
+
+func _on_retry_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
 func _on_main_menu_mouse_entered() -> void:
 	# Lancer l'animation de l'AnimatedSprite2D
 	button_main_menu_anim.play("default")

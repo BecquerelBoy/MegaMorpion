@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/AnimatedButton.gd" id="3_r66qg"]
 [ext_resource type="Texture2D" uid="uid://bnbk8jf86t22n" path="res://Asset/Menu/MainMenu/Button/Solo.png" id="3_yok32"]
 [ext_resource type="Texture2D" uid="uid://cw1i56mkxr62o" path="res://Asset/Menu/MainMenu/Button/1v1/1vs1.png" id="4_hptlk"]
-[ext_resource type="Texture2D" uid="uid://xiailmjcp5m" path="res://Asset/Menu/MainMenu/Button/quit.png" id="5_oqads"]
+[ext_resource type="Texture2D" uid="uid://xiailmjcp5m" path="res://Asset/Menu/MainMenu/Button/Quit.png" id="5_oqads"]
 [ext_resource type="Texture2D" uid="uid://ds08ucx3piyd0" path="res://Asset/Menu/MainMenu/Image/knightactoe_title.png" id="5_pvidh"]
 
 [sub_resource type="Animation" id="Animation_u2785"]
