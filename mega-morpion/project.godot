@@ -21,6 +21,7 @@ GameState="*res://Script/GameState.gd"
 GridEvaluator="*res://Script/GridEvaluator.gd"
 MusicManager="*res://Script/MusicManager.gd"
 TransitionScreen="*res://Scene/Transition_Screen.tscn"
+Global="*res://Script/Global.gd"
 
 [display]
 

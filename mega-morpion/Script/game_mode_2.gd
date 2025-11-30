@@ -11,14 +11,26 @@ var game_over = false
 
 # Référence au label de victoire
 @onready var win_label = $WinLabel
-@onready var you: AnimatedSprite2D = $Characters/You
-@onready var dragon: AnimatedSprite2D = $Characters/dragon
+@onready var player_1: AnimatedSprite2D = $Players/AnimPlayer1
+@onready var player_2: AnimatedSprite2D = $Players/AnimPlayer2
 
 func _ready():
 	# Cacher le label de victoire au début
 	win_label.visible = false
-	you.play("default")
-	dragon.play("default")
+	
+	# Charger les animations des personnages sélectionnés
+	if player_1.sprite_frames.has_animation(Global.player1_character):
+		player_1.play(Global.player1_character)
+	else:
+		player_1.play("default")
+		push_warning("Animation '" + Global.player1_character + "' introuvable pour Player1")
+	
+	if player_2.sprite_frames.has_animation(Global.player2_character):
+		player_2.play(Global.player2_character)
+	else:
+		player_2.play("default")
+		push_warning("Animation '" + Global.player2_character + "' introuvable pour Player2")
+	
 	# Récupérer toutes les grandes cases
 	for i in range(1, 10):
 		var grande_case = get_node("GrandeGrille/GrandeCase" + str(i))

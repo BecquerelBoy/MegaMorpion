@@ -1,38 +1,168 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5nf1xt0t3gx8"]
+[gd_scene load_steps=27 format=3 uid="uid://b5nf1xt0t3gx8"]
 
 [ext_resource type="Script" uid="uid://ce6vqrsnyaw7f" path="res://Script/game_mode_2.gd" id="1_mex7t"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_sur0u"]
 [ext_resource type="Script" uid="uid://ddpgif4thg860" path="res://Script/grand_case_GM2.gd" id="3_sur0u"]
-[ext_resource type="Texture2D" uid="uid://gnl8t401bjfo" path="res://Asset/Anim/You/old/You_anim_0001.png" id="3_xao5e"]
-[ext_resource type="Texture2D" uid="uid://ccsuelb5y18vd" path="res://Asset/Anim/You/old/You_anim_0002.png" id="4_lfpi6"]
-[ext_resource type="Texture2D" uid="uid://388ltc8ihnjc" path="res://Asset/Anim/Dragon/idle/dragon_anim_0001.png" id="5_h7ivj"]
-[ext_resource type="Texture2D" uid="uid://cw4obwr2unl3x" path="res://Asset/Anim/Dragon/idle/dragon_anim_0002.png" id="6_kjhoc"]
+[ext_resource type="Texture2D" uid="uid://bgvrgienpe2c6" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara0/Chara0.png" id="4_sur0u"]
+[ext_resource type="Texture2D" uid="uid://6ubon2onnbiu" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara1/Chara1.png" id="5_xao5e"]
+[ext_resource type="Texture2D" uid="uid://bhg3h4wg3brrg" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara2/Chara2.png" id="6_lfpi6"]
+[ext_resource type="Texture2D" uid="uid://taf0e7nj116i" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara3/Chara3.png" id="7_h7ivj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjhoc"]
+atlas = ExtResource("4_sur0u")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko8ea"]
+atlas = ExtResource("4_sur0u")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoe4m"]
+atlas = ExtResource("5_xao5e")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wmv1"]
+atlas = ExtResource("5_xao5e")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7itp"]
+atlas = ExtResource("6_lfpi6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe1ri"]
+atlas = ExtResource("6_lfpi6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toq0t"]
+atlas = ExtResource("7_h7ivj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s68xw"]
+atlas = ExtResource("7_h7ivj")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3pt4j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_xao5e")
+"texture": SubResource("AtlasTexture_kjhoc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_lfpi6")
+"texture": SubResource("AtlasTexture_ko8ea")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Chara0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoe4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wmv1")
+}],
+"loop": true,
+"name": &"Chara1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7itp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe1ri")
+}],
+"loop": true,
+"name": &"Chara2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toq0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s68xw")
+}],
+"loop": true,
+"name": &"Chara3",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq3pr"]
+atlas = ExtResource("4_sur0u")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4e56"]
+atlas = ExtResource("4_sur0u")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqgu2"]
+atlas = ExtResource("5_xao5e")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofipk"]
+atlas = ExtResource("5_xao5e")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43732"]
+atlas = ExtResource("6_lfpi6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oab0"]
+atlas = ExtResource("6_lfpi6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mh2q"]
+atlas = ExtResource("7_h7ivj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7idx"]
+atlas = ExtResource("7_h7ivj")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7y4ci"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_h7ivj")
+"texture": SubResource("AtlasTexture_uq3pr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_kjhoc")
+"texture": SubResource("AtlasTexture_f4e56")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Chara0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqgu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofipk")
+}],
+"loop": true,
+"name": &"Chara1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43732")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oab0")
+}],
+"loop": true,
+"name": &"Chara2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mh2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7idx")
+}],
+"loop": true,
+"name": &"Chara3",
 "speed": 5.0
 }]
 
@@ -92,19 +222,19 @@ position = Vector2(181, 181)
 scale = Vector2(0.29427317, 0.29427317)
 script = ExtResource("3_sur0u")
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Players" type="Node2D" parent="."]
 
-[node name="You" type="AnimatedSprite2D" parent="Characters"]
+[node name="AnimPlayer1" type="AnimatedSprite2D" parent="Players"]
 position = Vector2(-385.00003, 1)
 scale = Vector2(2.296875, 2.296875)
 sprite_frames = SubResource("SpriteFrames_3pt4j")
-frame_progress = 0.07075794
+animation = &"Chara0"
 
-[node name="dragon" type="AnimatedSprite2D" parent="Characters"]
+[node name="AnimPlayer2" type="AnimatedSprite2D" parent="Players"]
 position = Vector2(402.99997, -9)
 scale = Vector2(2.296875, 2.296875)
 sprite_frames = SubResource("SpriteFrames_7y4ci")
-frame_progress = 0.19913895
+animation = &"Chara3"
 
 [node name="WinLabel" type="Label" parent="."]
 offset_left = -168.0

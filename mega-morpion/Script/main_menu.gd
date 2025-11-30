@@ -48,7 +48,7 @@ func _on_v_1_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	MusicManager.stop_music(0.4)
-	get_tree().change_scene_to_file("res://Scene/GameMode2.tscn")
+	get_tree().change_scene_to_file("res://Scene/CharacterSelection.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
