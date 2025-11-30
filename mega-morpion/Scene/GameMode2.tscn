@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5nf1xt0t3gx8"]
+[gd_scene load_steps=36 format=3 uid="uid://b5nf1xt0t3gx8"]
 
 [ext_resource type="Script" uid="uid://ce6vqrsnyaw7f" path="res://Script/game_mode_2.gd" id="1_mex7t"]
 [ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_sur0u"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://6ubon2onnbiu" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara1/Chara1.png" id="5_xao5e"]
 [ext_resource type="Texture2D" uid="uid://bhg3h4wg3brrg" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara2/Chara2.png" id="6_lfpi6"]
 [ext_resource type="Texture2D" uid="uid://taf0e7nj116i" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara3/Chara3.png" id="7_h7ivj"]
+[ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/AnimatedButton.gd" id="8_lfpi6"]
+[ext_resource type="Texture2D" uid="uid://drq6x8m2glpsb" path="res://Asset/Menu/PauseMenu/pause_button.png" id="9_h7ivj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjhoc"]
 atlas = ExtResource("4_sur0u")
@@ -171,6 +173,50 @@ font_size = 30
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Curve" id="Curve_kjhoc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ko8ea"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50289, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knbij"]
+atlas = ExtResource("9_h7ivj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyn5k"]
+atlas = ExtResource("9_h7ivj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sco02"]
+atlas = ExtResource("9_h7ivj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov816"]
+atlas = ExtResource("9_h7ivj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eoe4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knbij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyn5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sco02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov816")
+}],
+"loop": false,
+"name": &"Play",
+"speed": 15.0
+}]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mex7t")
 
@@ -243,3 +289,32 @@ offset_right = 169.0
 offset_bottom = 19.0
 text = "VICTOIRE DE LA CROIX !"
 label_settings = SubResource("LabelSettings_1xcnr")
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 472.99997
+offset_top = -254.99998
+offset_right = 510.71426
+offset_bottom = -224.14287
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+pivot_offset = Vector2(20, 20)
+script = ExtResource("8_lfpi6")
+hover_scale_curve = SubResource("Curve_kjhoc")
+press_scale_curve = SubResource("Curve_ko8ea")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonPlayAnim" type="AnimatedSprite2D" parent="PauseButton"]
+position = Vector2(18.57143, 16.285717)
+scale = Vector2(0.6266742, 0.6266742)
+sprite_frames = SubResource("SpriteFrames_eoe4m")
+animation = &"Play"
+
+[connection signal="mouse_entered" from="PauseButton" to="." method="_on_pause_button_mouse_entered"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

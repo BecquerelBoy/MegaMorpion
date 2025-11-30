@@ -9,10 +9,15 @@ var grande_case_states = {}  # Stocke l'état de chaque grande case (null, "cros
 var next_grande_case = null  # null = jouer n'importe où, sinon numéro de la case
 var game_over = false
 
+var pause_instance = null
+const PAUSE_MENU = preload("uid://dlckbqy80trbh")
+@onready var pause_menu = preload("res://Scene/pause_menu.tscn")
+
 # Référence au label de victoire
 @onready var win_label = $WinLabel
 @onready var player_1: AnimatedSprite2D = $Players/AnimPlayer1
 @onready var player_2: AnimatedSprite2D = $Players/AnimPlayer2
+@onready var button_play_anim: AnimatedSprite2D = $PauseButton/ButtonPlayAnim
 
 func _ready():
 	# Cacher le label de victoire au début
@@ -153,20 +158,14 @@ func count_winner():
 	
 	update_playable_cases()
 
-func reset_game():
-	game_over = false
-	current_player = "cross"
-	next_grande_case = null
-	
-	# Cacher le label de victoire
-	win_label.visible = false
-	
-	for i in range(1, 10):
-		grande_case_states[i] = null
-		grandes_cases[i - 1].reset_grid()
-	
-	update_playable_cases()
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):  # Touche Entrée
-		reset_game()
+func _on_pause_button_mouse_entered() -> void:
+	button_play_anim.play("Play")
+
+func _on_pause_button_pressed() -> void:
+	if pause_instance == null:
+		print("Jeu en pause")
+		get_tree().paused = true
+		pause_instance = pause_menu.instantiate()
+		pause_instance.z_index = 100
+		add_child(pause_instance)
