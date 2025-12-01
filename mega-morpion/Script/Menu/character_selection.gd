@@ -5,6 +5,8 @@ extends Node
 @onready var player_select1 = $CharacterSelection/PlayerSelect1
 @onready var player_select2 = $CharacterSelection/PlayerSelect2
 
+@onready var ready_anim_button: AnimatedSprite2D = $Ready/ReadyAnimButton
+
 func _ready():
 	# Connecter les signaux des OptionButton
 	player_select1.item_selected.connect(_on_player_select1_item_selected)
@@ -39,3 +41,6 @@ func _update_animation(option_button: OptionButton, animated_sprite: AnimatedSpr
 
 func _on_ready_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/GameMode2.tscn")
+
+func _on_ready_mouse_entered() -> void:
+	ready_anim_button.play("ready")

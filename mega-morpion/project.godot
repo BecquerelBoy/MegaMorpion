@@ -17,11 +17,11 @@ config/icon="res://Asset/vrac/icon.svg"
 
 [autoload]
 
-GameState="*res://Script/GameState.gd"
-GridEvaluator="*res://Script/GridEvaluator.gd"
-MusicManager="*res://Script/MusicManager.gd"
+GameState="*res://Script/Globals/GameState.gd"
+GridEvaluator="*res://Script/Globals/GridEvaluator.gd"
+MusicManager="*res://Script/Globals/MusicManager.gd"
 TransitionScreen="*res://Scene/Transition_Screen.tscn"
-Global="*res://Script/Global.gd"
+Global="*res://Script/Globals/Global.gd"
 
 [display]
 
@@ -36,7 +36,8 @@ folder_colors={
 "res://Ressource/": "pink",
 "res://Scene/": "orange",
 "res://Script/": "blue",
-"res://Shader/": "yellow"
+"res://Shader/": "yellow",
+"res://Z_Export/": "gray"
 }
 
 [rendering]

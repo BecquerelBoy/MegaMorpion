@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c3ohjeua6j723"]
 
 [ext_resource type="Texture2D" uid="uid://l5ldfckswvsi" path="res://Asset/Grille/fondmorpion.png" id="1_342a2"]
-[ext_resource type="Script" uid="uid://c7dplavovshnn" path="res://Script/grand_case_1.gd" id="1_u3d78"]
+[ext_resource type="Script" uid="uid://c7dplavovshnn" path="res://Script/GameMode1/grand_case_1.gd" id="1_u3d78"]
 [ext_resource type="Texture2D" uid="uid://dqr26a57b1ydh" path="res://Asset/Grille/untitled.png" id="2_u3d78"]
 [ext_resource type="Texture2D" uid="uid://8oawt07msgup" path="res://Asset/Symbole/BlueCircle.png" id="3_q6yvs"]
 [ext_resource type="Texture2D" uid="uid://b7wx0qcrgiexj" path="res://Asset/Symbole/RedCross.png" id="4_shmjr"]

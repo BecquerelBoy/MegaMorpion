@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://bjk2gp3fykqvy"]
+
+[resource]
+OptionButton/styles/disabled_mirrored = null
