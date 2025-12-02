@@ -10,8 +10,7 @@ var next_grande_case = null  # null = jouer n'importe où, sinon numéro de la c
 var game_over = false
 
 var pause_instance = null
-const PAUSE_MENU = preload("uid://dlckbqy80trbh")
-@onready var pause_menu = preload("res://Scene/pause_menu.tscn")
+@onready var pause_menu = preload("res://Scene/pause_menu_1V1.tscn")
 
 # Référence au label de victoire
 @onready var win_label = $WinLabel

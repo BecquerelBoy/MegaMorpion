@@ -41,12 +41,18 @@ func _update_animation(option_button: OptionButton, animated_sprite: AnimatedSpr
 
 
 func _on_ready_pressed() -> void:
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	MusicManager.stop_music(0.4)
 	get_tree().change_scene_to_file("res://Scene/GameMode2.tscn")
 
 func _on_ready_mouse_entered() -> void:
 	ready_anim_button.play("ready")
 
 func _on_return_pressed() -> void:
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	MusicManager.stop_music(0.4)
 	get_tree().change_scene_to_file("res://Scene/main_menu.tscn")
 
 func _on_return_mouse_entered() -> void:
