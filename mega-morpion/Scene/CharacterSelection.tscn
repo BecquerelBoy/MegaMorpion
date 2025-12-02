@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cdbqoyuyc44to"]
+[gd_scene load_steps=46 format=3 uid="uid://cdbqoyuyc44to"]
 
 [ext_resource type="Script" uid="uid://dsrp06k2lqymk" path="res://Script/Menu/character_selection.gd" id="1_770u1"]
 [ext_resource type="Texture2D" uid="uid://bgvrgienpe2c6" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara0/Chara0.png" id="1_aqaaq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/Button/AnimatedButton.gd" id="6_i3kjl"]
 [ext_resource type="Texture2D" uid="uid://dqm4ld80gv7q4" path="res://Asset/Menu/CharaSelectionMenu/Ready.png" id="7_cy5dq"]
 [ext_resource type="Script" uid="uid://b2arwp1l8o2p0" path="res://Script/Button/player_select_2.gd" id="7_f7a46"]
+[ext_resource type="Texture2D" uid="uid://1xjsa0w227tl" path="res://Asset/Menu/CharaSelectionMenu/return.png" id="10_c8ai1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cy5dq"]
 atlas = ExtResource("1_aqaaq")
@@ -229,6 +230,57 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="Curve" id="Curve_n8ecm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hswb5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49811321, 1), 0.0, 0.0, 0, 0, Vector2(0.5056604, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b1vn"]
+atlas = ExtResource("10_c8ai1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6fge"]
+atlas = ExtResource("10_c8ai1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auta7"]
+atlas = ExtResource("10_c8ai1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f2iw"]
+atlas = ExtResource("10_c8ai1")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn477"]
+atlas = ExtResource("10_c8ai1")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qg464"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b1vn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6fge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auta7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f2iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn477")
+}],
+"loop": false,
+"name": &"return",
+"speed": 15.0
+}]
+
 [node name="CharacterSelection" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -306,9 +358,28 @@ position = Vector2(65, 20)
 sprite_frames = SubResource("SpriteFrames_3b1vn")
 animation = &"ready"
 
+[node name="Return" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+script = ExtResource("6_i3kjl")
+hover_scale_curve = SubResource("Curve_n8ecm")
+press_scale_curve = SubResource("Curve_hswb5")
+metadata/_custom_type_script = "uid://ba1uqiu310jud"
+
+[node name="ReturnAnimButton" type="AnimatedSprite2D" parent="Return"]
+position = Vector2(27, 18)
+sprite_frames = SubResource("SpriteFrames_qg464")
+animation = &"return"
+frame = 4
+frame_progress = 1.0
+
 [connection signal="mouse_entered" from="CharacterSelection/PlayerSelect1" to="." method="_on_player_select_1_mouse_entered"]
 [connection signal="mouse_entered" from="CharacterSelection/PlayerSelect1" to="CharacterSelection/PlayerSelect1" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CharacterSelection/PlayerSelect2" to="." method="_on_player_select_2_mouse_entered"]
 [connection signal="mouse_entered" from="CharacterSelection/PlayerSelect2" to="CharacterSelection/PlayerSelect2" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="Ready" to="." method="_on_ready_mouse_entered"]
 [connection signal="pressed" from="Ready" to="." method="_on_ready_pressed"]
+[connection signal="mouse_entered" from="Return" to="." method="_on_return_mouse_entered"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

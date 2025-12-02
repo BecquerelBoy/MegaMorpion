@@ -6,6 +6,7 @@ extends Node
 @onready var player_select2 = $CharacterSelection/PlayerSelect2
 
 @onready var ready_anim_button: AnimatedSprite2D = $Ready/ReadyAnimButton
+@onready var return_anim_button: AnimatedSprite2D = $Return/ReturnAnimButton
 
 func _ready():
 	# Connecter les signaux des OptionButton
@@ -44,3 +45,9 @@ func _on_ready_pressed() -> void:
 
 func _on_ready_mouse_entered() -> void:
 	ready_anim_button.play("ready")
+
+func _on_return_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scene/main_menu.tscn")
+
+func _on_return_mouse_entered() -> void:
+	return_anim_button.play("return")
