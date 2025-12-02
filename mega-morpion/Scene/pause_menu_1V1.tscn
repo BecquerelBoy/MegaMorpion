@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=3 uid="uid://hnjviwu1qxq8"]
 
-[ext_resource type="Script" uid="uid://dhqmst0s580d6" path="res://Scene/pause_menu_1v_1.gd" id="1_ot2co"]
+[ext_resource type="Script" uid="uid://dhqmst0s580d6" path="res://Script/Menu/pause_menu_1v_1.gd" id="1_ot2co"]
 [ext_resource type="Shader" uid="uid://pvwd44pstu3p" path="res://Shader/pause_menu.gdshader" id="2_ot2co"]
 [ext_resource type="Script" uid="uid://ba1uqiu310jud" path="res://Script/Button/AnimatedButton.gd" id="3_nt0lw"]
 [ext_resource type="Texture2D" uid="uid://bfhlac8mf6wws" path="res://Asset/Menu/PauseMenu/resume.png" id="4_jexh0"]

@@ -56,19 +56,23 @@ func _on_case_jouee(_grande_case_num, petite_case_num):
 	# Déterminer la prochaine grande case où jouer
 	next_grande_case = petite_case_num
 	
+	# Alterner le joueur
+	current_player = "circle" if current_player == "cross" else "cross"
+	
+	# Attendre la fin du frame pour que les signaux de victoire soient traités
+	await get_tree().process_frame
+	
 	# Si la case de destination est déjà gagnée ou nulle, on peut jouer n'importe où
 	if grande_case_states[next_grande_case] != null:
 		next_grande_case = null
-	
-	# Alterner le joueur
-	current_player = "circle" if current_player == "cross" else "cross"
 	
 	# Mettre à jour les cases jouables
 	update_playable_cases()
 	
 	# Vérifier s'il y a un gagnant au Super Morpion
 	check_super_morpion()
-
+	
+	
 func _on_petite_grille_gagnee(grande_case_num, winner):
 	grande_case_states[grande_case_num] = winner
 	print("Grande case ", grande_case_num, " gagnée par ", winner)
