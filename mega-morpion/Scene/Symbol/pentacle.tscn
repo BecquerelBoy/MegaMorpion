@@ -27,7 +27,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(0.75, 0.75), Vector2(1, 1)]
+"values": [Vector2(4, 4), Vector2(1, 1), Vector2(2, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_r78sm"]
@@ -72,3 +72,4 @@ texture = ExtResource("1_leiek")
 libraries = {
 &"": SubResource("AnimationLibrary_ca64j")
 }
+autoplay = "Placing"

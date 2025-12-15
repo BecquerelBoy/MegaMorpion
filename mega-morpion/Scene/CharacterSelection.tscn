@@ -306,15 +306,11 @@ offset_top = 450.0
 offset_right = 424.0
 offset_bottom = 522.0
 selected = 0
-item_count = 4
+item_count = 2
 popup/item_0/text = "Chara0"
 popup/item_0/id = 0
 popup/item_1/text = "Chara1"
 popup/item_1/id = 1
-popup/item_2/text = "Chara2"
-popup/item_2/id = 2
-popup/item_3/text = "Chara3"
-popup/item_3/id = 3
 script = ExtResource("6_cy5dq")
 
 [node name="PlayerSelect2" type="OptionButton" parent="CharacterSelection"]
@@ -323,15 +319,11 @@ offset_top = 450.0
 offset_right = 893.0
 offset_bottom = 523.0
 selected = 0
-item_count = 4
-popup/item_0/text = "Chara0"
-popup/item_0/id = 0
-popup/item_1/text = "Chara1"
-popup/item_1/id = 1
-popup/item_2/text = "Chara2"
-popup/item_2/id = 2
-popup/item_3/text = "Chara3"
-popup/item_3/id = 3
+item_count = 2
+popup/item_0/text = "Chara2"
+popup/item_0/id = 2
+popup/item_1/text = "Chara3"
+popup/item_1/id = 3
 script = ExtResource("7_f7a46")
 
 [node name="Ready" type="TextureButton" parent="."]
