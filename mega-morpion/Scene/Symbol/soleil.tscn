@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4mr4fwjnsc5n"]
 
-[ext_resource type="Script" uid="uid://o2ohqodp3h7h" path="res://Scene/Symbol/Placing.gd" id="1_2kpii"]
+[ext_resource type="Script" uid="uid://o2ohqodp3h7h" path="res://Script/Placing.gd" id="1_2kpii"]
 [ext_resource type="Texture2D" uid="uid://b8d1ihrj6jhpx" path="res://Asset/Symbole/soleil.png" id="2_2kpii"]
 
 [sub_resource type="Animation" id="Animation_cv63p"]

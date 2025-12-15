@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://d4cpnl7sntrxk"]
+
+[ext_resource type="Script" uid="uid://ddpgif4thg860" path="res://Script/GameMode2/grand_case_GM2.gd" id="1_jd2hg"]
+[ext_resource type="Texture2D" uid="uid://l5ldfckswvsi" path="res://Asset/Grille/fondmorpion.png" id="2_r2m6m"]
+[ext_resource type="Texture2D" uid="uid://dqr26a57b1ydh" path="res://Asset/Grille/untitled.png" id="3_acrmn"]
+[ext_resource type="Texture2D" uid="uid://8oawt07msgup" path="res://Asset/Symbole/BlueCircle.png" id="4_a4p3c"]
+[ext_resource type="Texture2D" uid="uid://b7wx0qcrgiexj" path="res://Asset/Symbole/RedCross.png" id="5_3rgad"]
+[ext_resource type="Texture2D" uid="uid://dfkx1psa47xx1" path="res://Asset/Anim/Grille/untitled_0002.png" id="6_6qvhm"]
+[ext_resource type="Texture2D" uid="uid://c2ielm2gm4i7v" path="res://Asset/Anim/Grille/untitled_0003.png" id="7_sid4e"]
+[ext_resource type="Texture2D" uid="uid://bvwiyvx5yavg4" path="res://Asset/Anim/Grille/untitled_0004.png" id="8_jv311"]
+[ext_resource type="Texture2D" uid="uid://be5p10b70vaki" path="res://Asset/Anim/Grille/untitled_0005.png" id="9_jtpfs"]
+[ext_resource type="Texture2D" uid="uid://dw0wgka2jspde" path="res://Asset/Anim/Cadre/untitled_0001.png" id="10_057pq"]
+[ext_resource type="Texture2D" uid="uid://bofkdiniudkbn" path="res://Asset/Anim/Cadre/untitled_0002.png" id="11_ix4aq"]
+[ext_resource type="Texture2D" uid="uid://v002dq0rbivk" path="res://Asset/Anim/Cadre/untitled_0003.png" id="12_hfnc7"]
+[ext_resource type="Texture2D" uid="uid://cfmqdlx38mg5b" path="res://Asset/Anim/Cadre/untitled_0004.png" id="13_nlwfy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdpxd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6qvhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sid4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jv311")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jtpfs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2cuw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_057pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ix4aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hfnc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nlwfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r34rm"]
+size = Vector2(143, 144)
+
+[node name="GrandeCase1" type="Node2D"]
+script = ExtResource("1_jd2hg")
+
+[node name="Assets" type="Node2D" parent="."]
+
+[node name="Fondmorpion" type="Sprite2D" parent="Assets"]
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_r2m6m")
+
+[node name="Ligne" type="Sprite2D" parent="Assets"]
+visible = false
+scale = Vector2(30, 30)
+texture = ExtResource("3_acrmn")
+
+[node name="BlueCircle" type="Sprite2D" parent="Assets"]
+visible = false
+position = Vector2(123.91171, 124.9117)
+scale = Vector2(1.8722407, 1.8722407)
+texture = ExtResource("4_a4p3c")
+
+[node name="RedCross" type="Sprite2D" parent="Assets"]
+visible = false
+position = Vector2(123.91171, 124.9117)
+scale = Vector2(1.8722407, 1.8722407)
+texture = ExtResource("5_3rgad")
+
+[node name="GrilleAnim" type="AnimatedSprite2D" parent="Assets"]
+position = Vector2(3.695488e-06, -1.1444088e-05)
+scale = Vector2(4.4999995, 4.5)
+sprite_frames = SubResource("SpriteFrames_xdpxd")
+frame_progress = 0.59029156
+
+[node name="CadreAnim" type="AnimatedSprite2D" parent="Assets"]
+position = Vector2(-0.9999995, 2)
+scale = Vector2(4.5285716, 4.45)
+sprite_frames = SubResource("SpriteFrames_u2cuw")
+frame_progress = 0.15703833
+
+[node name="ShapeCase" type="Node2D" parent="."]
+
+[node name="ShapePetiteCase1" type="Area2D" parent="ShapeCase"]
+position = Vector2(-182, -182)
+
+[node name="CShape1" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase1"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase2" type="Area2D" parent="ShapeCase"]
+position = Vector2(0, -182)
+
+[node name="CShape2" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase2"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase3" type="Area2D" parent="ShapeCase"]
+position = Vector2(182, -182)
+
+[node name="CShape3" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase3"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase4" type="Area2D" parent="ShapeCase"]
+position = Vector2(-183, 0)
+
+[node name="CShape4" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase4"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase5" type="Area2D" parent="ShapeCase"]
+
+[node name="CShape5" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase5"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase6" type="Area2D" parent="ShapeCase"]
+position = Vector2(183, 0)
+
+[node name="CShape6" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase6"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase7" type="Area2D" parent="ShapeCase"]
+position = Vector2(-183, 182)
+
+[node name="CShape7" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase7"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase8" type="Area2D" parent="ShapeCase"]
+position = Vector2(0, 182)
+
+[node name="CShape8" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase8"]
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ShapePetiteCase9" type="Area2D" parent="ShapeCase"]
+position = Vector2(181, 183)
+
+[node name="CShape9" type="CollisionShape2D" parent="ShapeCase/ShapePetiteCase9"]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_r34rm")

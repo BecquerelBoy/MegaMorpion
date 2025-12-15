@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://b5nf1xt0t3gx8"]
+[gd_scene load_steps=35 format=3 uid="uid://b5nf1xt0t3gx8"]
 
 [ext_resource type="Script" uid="uid://ce6vqrsnyaw7f" path="res://Script/GameMode2/game_mode_2.gd" id="1_mex7t"]
-[ext_resource type="PackedScene" uid="uid://c3ohjeua6j723" path="res://Scene/GrandCase1.tscn" id="2_sur0u"]
-[ext_resource type="Script" uid="uid://ddpgif4thg860" path="res://Script/GameMode2/grand_case_GM2.gd" id="3_sur0u"]
+[ext_resource type="PackedScene" uid="uid://d4cpnl7sntrxk" path="res://Scene/GrandCaseGM2.tscn" id="2_xao5e"]
 [ext_resource type="Texture2D" uid="uid://bgvrgienpe2c6" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara0/Chara0.png" id="4_sur0u"]
 [ext_resource type="Texture2D" uid="uid://6ubon2onnbiu" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara1/Chara1.png" id="5_xao5e"]
 [ext_resource type="Texture2D" uid="uid://bhg3h4wg3brrg" path="res://Asset/Anim/CharaAnim/CharaSelect/Chara2/Chara2.png" id="6_lfpi6"]
@@ -224,49 +223,41 @@ script = ExtResource("1_mex7t")
 
 [node name="GrandeGrille" type="Node2D" parent="."]
 
-[node name="GrandeCase1" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(-182, -180)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase1" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(-182, -179)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase2" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(0, -180)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase2" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(0, -178.99998)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase3" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(181, -180)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase3" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(181, -179)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase4" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(-182, 0)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase4" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(-182.00002, 1.5258789e-05)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase5" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase5" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(0, -1.8189894e-12)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase6" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(181, 0)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase6" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(181.00002, 2.1684043e-19)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase7" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(-182, 181)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase7" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(-182.00002, 178.00002)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase8" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(0, 181)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase8" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(0, 178)
+scale = Vector2(0.29, 0.29)
 
-[node name="GrandeCase9" parent="GrandeGrille" instance=ExtResource("2_sur0u")]
-position = Vector2(181, 181)
-scale = Vector2(0.29427317, 0.29427317)
-script = ExtResource("3_sur0u")
+[node name="GrandeCase9" parent="GrandeGrille" instance=ExtResource("2_xao5e")]
+position = Vector2(181.00002, 178)
+scale = Vector2(0.29, 0.29)
 
 [node name="Players" type="Node2D" parent="."]
 
